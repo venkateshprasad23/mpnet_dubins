@@ -19,32 +19,32 @@ def weights_init(m):
 
 class Encoder(nn.Module):
     """
-    A 2D VoxNet for encoding obstacle space
+    A 3D VoxNet for encoding obstacle space
     """
 
     def __init__(self, output_size, state_size, input_size):
         super(Encoder, self).__init__()
         self.encoder = nn.Sequential(
-            nn.Conv2d(in_channels=1,
+            nn.Conv3d(in_channels=1,
                       out_channels=8,
-                      kernel_size=[5, 5],
-                      stride=[1, 1]),
+                      kernel_size=[5, 5, 5],
+                      stride=[1, 1, 1]),
             # nn.BatchNorm2d(8),
-            nn.MaxPool2d(kernel_size=3),
+            nn.MaxPool3d(kernel_size=3),
             nn.PReLU(),
             # nn.ReLU(),
-            nn.Conv2d(in_channels=8,
+            nn.Conv3d(in_channels=8,
                       out_channels=16,
-                      kernel_size=[3, 3],
-                      stride=[1, 1]),
+                      kernel_size=[3, 3, 3],
+                      stride=[1, 1, 1]),
             # nn.BatchNorm2d(16),
-            nn.MaxPool2d(kernel_size=3),
+            nn.MaxPool3d(kernel_size=3),
             nn.PReLU(),
             # nn.ReLU(),
-            nn.Conv2d(in_channels=16,
+            nn.Conv3d(in_channels=16,
                       out_channels=32,
-                      kernel_size=[3, 3],
-                      stride=[1, 1]),
+                      kernel_size=[3, 3, 3],
+                      stride=[1, 1, 1]),
             # nn.BatchNorm2d(32),
             nn.PReLU(),
         )

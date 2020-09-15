@@ -54,7 +54,7 @@ class DubinsDataset(torch.utils.data.Dataset):
         i = 0
         done = False
 
-        trajFolder = osp.join(folder_loc, 'path')
+        trajFolder = osp.join(folder_loc, 'paths')
         seeds = []
 
         for entry in os.listdir(trajFolder):
@@ -118,7 +118,7 @@ class DubinsIterDataset(torch.utils.data.IterableDataset):
         # resl = msg.info.resolution
         # x0, y0 = msg.info.origin.position.x, msg.info.origin.position.y
         costmap = np.load(osp.join(self.folder_loc,'costmaps','{}.npy'.format(idx)))
-        traj = np.load(osp.join(self.folder_loc,'path','{}.npy'.format(idx)))
+        traj = np.load(osp.join(self.folder_loc,'paths','{}.npy'.format(idx)))
         traj = np.reshape(traj,(traj.shape[0],1))
         # View trajectories from the perspective of the local costmap
         localtraj = np.copy(traj)
@@ -137,7 +137,7 @@ class DubinsIterDataset(torch.utils.data.IterableDataset):
 
         # goal = world_to_voxel(goal)
 
-        for i in range(traj[:-1]):
+        for i in range(samples):
 
             # mx, my = world_to_pixel(point, x0, y0, resl)
             # if 0>mx or mx>120 or 0>my or my>120:

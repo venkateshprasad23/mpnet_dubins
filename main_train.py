@@ -3,12 +3,12 @@ import argparse
 import torch
 
 # import src.Model.AE.CAE as CAE_2d
-import mpnet_dubins.model.voxel_ae as voxelNet
-import mpnet_dubins.model.model as model
+import voxel_ae as voxelNet
+import model as model
 
 
-from mpnet_dubins.utils.misc import normalize, unnormalize
-from mpnet_dubins.src.train import MPnetTrain
+from misc import normalize, unnormalize
+from train import MPnetTrain
 
 
 def train(args):
@@ -17,10 +17,10 @@ def train(args):
     network_parameters = {
         'normalize': normalize,
         'denormalize': denormalize,
-        'encoderInputDim': [1, 80, 80],
+        'encoderInputDim': [1, 20, 20, 20],
         'encoderOutputDim': 128,
         # 'worldSize': [27, 27, np.pi],
-        'worldSize' : [ 6, 6, np.pi],
+        'worldSize' : [ 2, 2, 2],
         'AE': voxelNet,
         'MLP': MLP,
         'modelPath': args.file,
@@ -39,8 +39,8 @@ def train(args):
     trainNetwork.train(numEnvsTrain=150000,
                        numEnvsTest=1000,
                        numPaths=1,
-                       trainDataPath='/root/data/mymap/training_data',
-                       testDataPath='/root/data/mymap/training_data')
+                       trainDataPath='/root/my_workspace/data/main_train/train/',
+                       testDataPath='/root/my_workspace/data/main_train/test/')
 
 
 def parse_args():

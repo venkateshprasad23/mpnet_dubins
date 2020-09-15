@@ -43,7 +43,7 @@ class Encoder(nn.Module):
             # nn.ReLU(),
             nn.Conv3d(in_channels=16,
                       out_channels=32,
-                      kernel_size=[3, 3, 3],
+                      kernel_size=[1, 1, 1],
                       stride=[1, 1, 1]),
             # nn.BatchNorm2d(32),
             nn.PReLU(),

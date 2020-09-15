@@ -9,8 +9,8 @@ import torch
 from torch.nn.utils import clip_grad_value_
 from torch.utils.data import DataLoader
 
-from mpnet_dubins.utils.data_loader import DubinsDataset
-from mpnet_dubins.src.mpnet import MPnetBase
+from data_loader import DubinsDataset
+from mpnet import MPnetBase
 
 # TODO: Change the code to center the robot
 def CenterRobot(costmap, pixel_ind):

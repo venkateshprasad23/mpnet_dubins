@@ -2,10 +2,10 @@
 import torch
 import numpy as np
 
-import mpnet_dubins.model.voxel_ae as voxelNet
-import mpnet_dubins.model.model as model
-from mpnet_dubins.src.mpnet import MPnetBase
-from mpnet_dubins.utils.misc import normalize, unnormalize
+import model.voxel_ae as voxelNet
+import model.model as model
+from mpnet import MPnetBase
+from misc import normalize, unnormalize
 
 
 if __name__=="__main__":

@@ -44,7 +44,7 @@ def get_points(point):
 
     return u_x, u_y, u_z
 
-class DubinsDataset(torch.utils.data.Dataset):
+class ThreedDataset(torch.utils.data.Dataset):
     def __init__(self, folder_loc, numSamples):
         self.folder_loc = folder_loc
         self.numSamples = numSamples
@@ -62,7 +62,7 @@ class DubinsDataset(torch.utils.data.Dataset):
                 s = int(entry.split(".")[0])
                 seeds.append(s)
 
-        DataSet = DubinsIterDataset(folder_loc, seeds)
+        DataSet = ThreedIterDataset(folder_loc, seeds)
         Data = DataLoader(DataSet, num_workers=5)
 
         # if not seeds:
@@ -92,7 +92,7 @@ class DubinsDataset(torch.utils.data.Dataset):
         return self.obs[idx, ...], self.inputs[idx, ...], self.targets[idx, ...]
 
 
-class DubinsIterDataset(torch.utils.data.IterableDataset):
+class ThreedIterDataset(torch.utils.data.IterableDataset):
     def __init__(self, folder_loc, seeds):
         self.folder_loc = folder_loc
         self.seeds = seeds

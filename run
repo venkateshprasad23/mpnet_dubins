@@ -1,0 +1,12 @@
+sudo docker run -it \
+	--gpus all \
+	-e DISPLAY=$DISPLAY \
+	-v $XAUTH:/root/.Xauthority \
+	-v /tmp/.X11-unix:/tmp/.X11-unix:rw \
+	--volume $HOME/ARCLab/mpnet_train/docker/:/root/my_workspace/ \
+	--shm-size="8g" \
+	d2134b7b1902 \
+	bash
+
+sudo docker restart 0e4c0df7ecd3
+sudo docker exec -it 0e4c0df7ecd3 bash

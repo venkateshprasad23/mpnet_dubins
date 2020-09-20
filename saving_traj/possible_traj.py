@@ -112,6 +112,7 @@ def get_costmap(points):
 
 if __name__ == "__main__":
     trajFolder = '/root/paths/'
+    print("hello")
     for entry in os.listdir(trajFolder):
         if '.npy' in entry:
             # s = int(entry.split(".")[0])

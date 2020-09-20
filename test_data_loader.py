@@ -7,6 +7,10 @@ if __name__ == "__main__":
     train_ds = ThreedDataset(trainDataFileName, 10)
     train_dl = DataLoader(train_ds, shuffle=True, num_workers=5, batch_size=1, drop_last=True)
 
+    count = 0
     # print(train_dl[5])
     for x in train_dl:
-    	print(x)
+    	count+=1
+    	print(count)
+    	print("\n")
+    	# print(x)

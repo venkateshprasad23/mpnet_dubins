@@ -9,8 +9,8 @@ count = 0
 map_bounds = 16.3
 volume = 10
 
-saving_path_folder = '/root/my_workspace/data/modified_paths/'
-saving_costmap_folder = '/root/my_workspace/data/modified_costmaps/'
+saving_path_folder = '/root/data/modified_paths/'
+saving_costmap_folder = '/root/data/modified_costmaps/'
 
 mapping = np.load('map.npy')
 
@@ -82,7 +82,7 @@ def PossibleComb(points):
             count = count+1;
             path_array = np.array(path_array)
             costmap_array = np.array(costmap_array)
-            
+
             np.save(saving_path_folder + str(count) + '.npy',path_array)
             np.save(saving_costmap_folder + str(count) + '.npy',costmap_array)
         else:
@@ -109,7 +109,7 @@ def get_costmap(points):
     return costmap
 
 if __name__ == "__main__":
-    trajFolder = '/root/my_workspace/data/paths/'
+    trajFolder = '/root/voxblox_backup/catkin_ws/paths/'
     for entry in os.listdir(trajFolder):
         if '.npy' in entry:
             # s = int(entry.split(".")[0])

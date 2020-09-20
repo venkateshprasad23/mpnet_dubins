@@ -54,7 +54,7 @@ class ThreedDataset(torch.utils.data.Dataset):
         i = 0
         done = False
 
-        trajFolder = osp.join(folder_loc, 'paths')
+        trajFolder = osp.join(folder_loc, 'modified_paths')
         seeds = []
 
         for entry in os.listdir(trajFolder):

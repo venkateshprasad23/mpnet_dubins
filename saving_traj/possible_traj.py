@@ -9,8 +9,8 @@ count = 0
 map_bounds = 16.3
 volume = 10
 
-saving_path_folder = '/root/data/modified_paths/'
-saving_costmap_folder = '/root/data/modified_costmaps/'
+saving_path_folder = '/root/my_workspace/data/modified_paths/'
+saving_costmap_folder = '/root/my_workspace/data/modified_costmaps/'
 
 mapping = np.load('map.npy')
 
@@ -109,7 +109,7 @@ def get_costmap(points):
     return costmap
 
 if __name__ == "__main__":
-    trajFolder = '/root/voxblox_backup/catkin_ws/paths/'
+    trajFolder = '/root/paths/'
     for entry in os.listdir(trajFolder):
         if '.npy' in entry:
             # s = int(entry.split(".")[0])

@@ -117,8 +117,8 @@ class ThreedIterDataset(torch.utils.data.IterableDataset):
 
         # resl = msg.info.resolution
         # x0, y0 = msg.info.origin.position.x, msg.info.origin.position.y
-        costmap = np.load(osp.join(self.folder_loc,'modified_costmaps','{}.npy'.format(idx)))
-        traj = np.load(osp.join(self.folder_loc,'modified_paths','{}.npy'.format(idx)))
+        costmap = np.load(osp.join(self.folder_loc,'modified_costmaps','{}.npy'.format(idx)),allow_pickle=true)
+        traj = np.load(osp.join(self.folder_loc,'modified_paths','{}.npy'.format(idx)),allow_pickle=true)
         traj = np.reshape(traj,(traj.shape[0],1))
         # View trajectories from the perspective of the local costmap
         localtraj = np.copy(traj)

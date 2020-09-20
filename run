@@ -1,10 +1,10 @@
-sudo docker run -it \
+docker run -it \
 	--gpus all \
 	-e DISPLAY=$DISPLAY \
 	-v $XAUTH:/root/.Xauthority \
 	-v /tmp/.X11-unix:/tmp/.X11-unix:rw \
-	--volume /root/docker/:/root/my_workspace/ \
-	--volume /root/voxblox_backup/catkin_ws/paths/:/root/paths// \
+	--volume $HOME/docker/:/root/my_workspace/ \
+	--volume $HOME/voxblox_backup/catkin_ws/paths/:/root/paths/ \
 	--shm-size="8g" \
 	mpnet_pytorch \
 	bash

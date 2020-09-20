@@ -14,6 +14,8 @@ saving_costmap_folder = '/root/my_workspace/data/modified_costmaps/'
 
 mapping = np.load('map.npy')
 
+print("hello")
+
 def get_points(point):
     j=0
     z = str(point[0])

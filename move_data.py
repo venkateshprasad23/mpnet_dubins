@@ -17,10 +17,12 @@ files_costmaps = os.listdir(source_costmaps)
 count = 1
 for file in files_paths:
 	print("inside for loop")
-	if(count>=1 and count<=20000):
+	if(count<=20000):
 		print("inside first if condition")
 		shutil.copy(file, destination_train_paths)
 		count+=1
+		print(count)
+		print("\n")
 	elif(count>20000 and count<=25000):
 		print("inside second if condition")
 		shutil.copy(file, destination_test_paths)

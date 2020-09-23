@@ -28,7 +28,7 @@ def train(args):
     
     trainNetwork = MPnetTrain(
         load_dataset=None,
-        n_epochs=300,
+        n_epochs=10,
         batchSize=256,
         opt=torch.optim.Adam,
         learning_rate=3e-4,
@@ -36,8 +36,8 @@ def train(args):
     )
     # trainNetwork.set_model_train_epoch(999)
 
-    trainNetwork.train(numEnvsTrain=150000,
-                       numEnvsTest=1000,
+    trainNetwork.train(numEnvsTrain=20000,
+                       numEnvsTest=5000,
                        numPaths=1,
                        trainDataPath='/root/my_workspace/data/main_train/train/',
                        testDataPath='/root/my_workspace/data/main_train/test/')

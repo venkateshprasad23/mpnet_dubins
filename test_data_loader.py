@@ -12,5 +12,5 @@ if __name__ == "__main__":
     for x in train_dl:
     	count+=1
     	print(count)
-    	print("\n")
+    	# print("\n")
     	# print(x)

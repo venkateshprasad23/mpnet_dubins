@@ -1,11 +1,11 @@
 import shutil
 import os
 
-source_paths = '/root/my_workspace/data/modified_paths/'
-source_costmaps = '/root/my_workspace/data/modified_costmaps/'
+source_paths = '~/my_workspace/data/modified_paths/'
+source_costmaps = '~/my_workspace/data/modified_costmaps/'
 
-destination_train_paths = '/root/my_workspace/data/main_train/train/paths/'
-destination_train_costmaps = '/root/my_workspace/data/main_train/train/costmaps/'
+destination_train_paths = '~/my_workspace/data/main_train/train/paths/'
+destination_train_costmaps = '~/my_workspace/data/main_train/train/costmaps/'
 
 destination_test_paths = '/root/my_workspace/data/main_train/test/paths/'
 destination_test_costmaps = '/root/my_workspace/data/main_train/test/costmaps/'
@@ -13,6 +13,8 @@ destination_test_costmaps = '/root/my_workspace/data/main_train/test/costmaps/'
 files_paths = os.listdir(source_paths)
 files_costmaps = os.listdir(source_costmaps)
 
+print(files_paths)
+print(files_costmaps)
 # train_paths
 count = 1
 for file in files_paths:

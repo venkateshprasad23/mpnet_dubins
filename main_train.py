@@ -39,8 +39,8 @@ def train(args):
     trainNetwork.train(numEnvsTrain=20000,
                        numEnvsTest=5000,
                        numPaths=1,
-                       trainDataPath='/root/my_workspace/data/',
-                       testDataPath='/root/my_workspace/data/')
+                       trainDataPath='/root/my_workspace/data/main_train/train/',
+                       testDataPath='/root/my_workspace/data/main_train/test/')
 
 
 def parse_args():

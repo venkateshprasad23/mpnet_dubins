@@ -21,13 +21,13 @@ for file in files_paths:
 	print("inside for loop")
 	if(count<=20000):
 		print("inside first if condition")
-		shutil.copy(file, destination_train_paths)
+		shutil.copy2(file, destination_train_paths)
 		count+=1
 		print(count)
 		print("\n")
 	elif(count>20000 and count<=25000):
 		print("inside second if condition")
-		shutil.copy(file, destination_test_paths)
+		shutil.copy2(file, destination_test_paths)
 		count+=1
 	else:
 		break
@@ -35,10 +35,10 @@ for file in files_paths:
 count = 1
 for file in files_costmaps:
 	if(count>=1 and count<=20000):
-		shutil.copy(file, destination_train_costmaps)
+		shutil.copy2(file, destination_train_costmaps)
 		count+=1
 	elif(count>20000 and count<=25000):
-		shutil.copy(file, destination_test_costmaps)
+		shutil.copy2(file, destination_test_costmaps)
 		count+=1
 	else:
 		break

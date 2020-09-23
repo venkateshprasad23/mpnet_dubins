@@ -16,10 +16,10 @@ files_costmaps = os.listdir(source_costmaps)
 # train_paths
 count = 1
 for file in files_paths:
-	if(count>=1 && count<=20000):
+	if(count>=1 and count<=20000):
 		shutil.copy(f"{source_paths}/{file}", destination_train_paths)
 		count+=1
-	elif(count>20000 && count<=25000):
+	elif(count>20000 and count<=25000):
 		shutil.copy(f"{source_paths}/{file}", destination_test_paths)
 		count+=1
 	else:
@@ -27,10 +27,10 @@ for file in files_paths:
 
 count = 1
 for file in files_costmaps:
-	if(count>=1 && count<=20000):
+	if(count>=1 and count<=20000):
 		shutil.copy(f"{source_costmaps}/{file}", destination_train_costmaps)
 		count+=1
-	elif(count>20000 && count<=25000):
+	elif(count>20000 and count<=25000):
 		shutil.copy(f"{source_costmaps}/{file}", destination_test_costmaps)
 		count+=1
 	else:

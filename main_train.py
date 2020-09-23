@@ -32,7 +32,7 @@ def train(args):
         batchSize=256,
         opt=torch.optim.Adam,
         learning_rate=3e-4,
-        **network_parameters,
+        **network_parameters
     )
     # trainNetwork.set_model_train_epoch(999)
 

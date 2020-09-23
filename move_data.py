@@ -1,8 +1,8 @@
 import shutil
 import os
 
-source_paths = '~/my_workspace/data/modified_paths/'
-source_costmaps = '~/my_workspace/data/modified_costmaps/'
+source_paths = '/root/my_workspace/data/modified_paths/'
+source_costmaps = '/root/my_workspace/data/modified_costmaps/'
 
 destination_train_paths = '~/my_workspace/data/main_train/train/paths/'
 destination_train_costmaps = '~/my_workspace/data/main_train/train/costmaps/'

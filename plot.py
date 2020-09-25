@@ -9,9 +9,9 @@ array = []
 # array = np.array(array)
 
 for row in myreader:
-	print(row)
-	# array.append(row[1])
-
+	# print(row[1])
+	array.append(row[1])
+print(array)
 # plt.plot(array)
 # plt.savefig('loss.png')
     

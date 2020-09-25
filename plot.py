@@ -10,6 +10,8 @@ array = []
 
 for row in myreader:
 	# print(row[1])
+	if(row[1] == 'train_loss'):
+		continue
 	array.append(int(row[1]))
 print(array)
 # plt.plot(array)

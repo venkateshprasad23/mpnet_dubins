@@ -10,7 +10,7 @@ array = []
 
 for row in myreader:
 	# print(row[1])
-	array.append(row[1])
+	array.append(int(row[1]))
 print(array)
 # plt.plot(array)
 # plt.savefig('loss.png')

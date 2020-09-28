@@ -12,6 +12,20 @@ from torch.utils.data import DataLoader
 
 from data_loader import ThreedDataset
 
+def format_data(self, obs, inputs, targets):
+        """
+        Formats the data to be fed into the neural network
+        """
+        bobs, bi = self.format_input(obs, inputs)
+        # Format targets
+        if isinstance(targets, np.ndarray):
+            bt = torch.FloatTensor(targets)
+        else:
+            bt = targets.float()
+        bt = self.normalize(bt, self.worldSize)
+        bt = to_var(bt)
+        return bobs, bi, bt
+
 
 if __name__=="__main__":
     modelPath = '/root/my_workspace/data/trained_models/mpnet_epoch_299.pkl'
@@ -35,7 +49,7 @@ if __name__=="__main__":
     # sm.save(saveTorchScriptModel)
     test_ds = ThreedDataset(testDataPath, 10)
     testObs, testInput, testTarget = test_ds[:int(5)]
-    testObs, testInput, testTarget = self.format_data(
+    testObs, testInput, testTarget = format_data(
         testObs, testInput, testTarget)
 
     with torch.no_grad():

@@ -78,7 +78,7 @@ if __name__=="__main__":
 
     with torch.no_grad():
         # test loss
-        network_output = self.mpNet(testInput, testObs)
+        network_output = mpnet_base.mpNet(testInput, testObs)
         # test_loss_i = self.mpNet.loss(
         #     network_output,
         #     testTarget

@@ -12,7 +12,7 @@ from torch.utils.data import DataLoader
 
 from data_loader import ThreedDataset
 
-def format_data(self, obs, inputs, targets):
+def format_data(obs, inputs, targets):
         """
         Formats the data to be fed into the neural network
         """

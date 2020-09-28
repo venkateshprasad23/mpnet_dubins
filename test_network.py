@@ -12,17 +12,41 @@ from torch.utils.data import DataLoader
 
 from data_loader import ThreedDataset
 
+from misc import load_net_state, load_opt_state, save_state, to_var, load_seed
+
+worldSize = [2, 2, 2]
+
+def format_input(obs, inputs):
+        """
+        Formats the input data that needed to be fed into the network
+        """
+        if isinstance(inputs, np.ndarray):
+            bi = torch.FloatTensor(inputs)
+        else:
+            bi = inputs.float()
+        if isinstance(obs, np.ndarray):
+            bobs = torch.FloatTensor(obs)
+        else:
+            bobs = obs.float()
+
+        # Normalize observations
+        # normObsVoxel = torchvision.transforms.Normalize([0.5], [1])
+        # for i in range(bobs.shape[0]):
+        #     bobs[i, ...] = normObsVoxel(bobs[i, ...])
+        bi = normalize(bi, worldSize)
+        return to_var(bobs), to_var(bi)
+
 def format_data(obs, inputs, targets):
         """
         Formats the data to be fed into the neural network
         """
-        bobs, bi = self.format_input(obs, inputs)
+        bobs, bi = format_input(obs, inputs)
         # Format targets
         if isinstance(targets, np.ndarray):
             bt = torch.FloatTensor(targets)
         else:
             bt = targets.float()
-        bt = self.normalize(bt, self.worldSize)
+        bt = normalize(bt, worldSize)
         bt = to_var(bt)
         return bobs, bi, bt
 

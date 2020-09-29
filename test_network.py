@@ -72,7 +72,7 @@ if __name__=="__main__":
     # sm = torch.jit.script(mpnet_base.mpNet)
     # sm.save(saveTorchScriptModel)
     test_ds = ThreedDataset(testDataPath, 10)
-    testObs, testInput, testTarget = test_ds
+    testObs, testInput, testTarget = test_ds[:5]
     testObs, testInput, testTarget = format_data(
         testObs, testInput, testTarget)
 

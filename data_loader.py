@@ -119,11 +119,11 @@ class ThreedIterDataset(torch.utils.data.IterableDataset):
         # x0, y0 = msg.info.origin.position.x, msg.info.origin.position.y
         costmap = np.load(osp.join(self.folder_loc,'costmaps','{}.npy'.format(idx)),allow_pickle=True)
         traj = np.load(osp.join(self.folder_loc,'paths','{}.npy'.format(idx)),allow_pickle=True)
-        traj = np.reshape(traj,(traj.shape[0],1))
+        # traj = np.reshape(traj,(traj.shape[0],1))
         # View trajectories from the perspective of the local costmap
         localtraj = np.copy(traj)
         # localtraj[:,:2] = localtraj[:,:2] - np.array([msg.info.origin.position.x, msg.info.origin.position.y])
-        samples = traj.shape[0] - 1
+        samples = traj.shape[0]
 
         obs = np.ones((samples, 1, 20, 20, 20))
         inputs = np.zeros((samples, 6))
@@ -147,8 +147,8 @@ class ThreedIterDataset(torch.utils.data.IterableDataset):
             # new_costmap[120-my:240-my,120-mx:240-mx] = costmap
             # Normalize and compress the image by 3 times
             obs[i,0,:,:,:] = costmap[i]
-            inputs[i, :] = np.concatenate((get_points(localtraj[i]), get_points(goal)))
-            targets[i, :] = get_points(localtraj[i+1])
+            inputs[i, :] = np.concatenate(localtraj[i], goal)
+            targets[i, :] = localtraj[i+1]
 
         return {
             'obs': np.array(obs, dtype=np.float32),

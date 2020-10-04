@@ -123,7 +123,7 @@ class ThreedIterDataset(torch.utils.data.IterableDataset):
         # View trajectories from the perspective of the local costmap
         localtraj = np.copy(traj)
         # localtraj[:,:2] = localtraj[:,:2] - np.array([msg.info.origin.position.x, msg.info.origin.position.y])
-        samples = traj.shape[0]
+        samples = traj.shape[0] - 1
 
         obs = np.ones((samples, 1, 20, 20, 20))
         inputs = np.zeros((samples, 6))

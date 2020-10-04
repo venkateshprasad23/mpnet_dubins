@@ -50,14 +50,14 @@ if __name__ == "__main__":
             # print(PossibleComb(localtraj))
             # PossibleComb(localtraj)
             start = localtraj[0]
-            start = get_points(start)
+            start_x, start_y, start_z = get_points(start)
             count = count+1
             for points in localtraj:
-                points = get_points(points)
-                points[0] = points[0] - start[0]
-                points[1] = points[1] - start[1]
-                points[2] = points[2] - start[2]
-                path_array.append(points)
+                x,y,z = get_points(points)
+                x = x - start_x
+                y = y - start_y
+                z = z - start_z
+                path_array.append(x,y,z)
 
             print(path_array)
             if(count==10):

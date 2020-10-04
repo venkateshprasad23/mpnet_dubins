@@ -38,11 +38,12 @@ if __name__ == "__main__":
     trajFolder = '/root/my_workspace/data/modified_paths/'
     # print("hello")
     count = 0
-    path_array = []
+    
     for entry in os.listdir(trajFolder):
         if '.npy' in entry:
             # s = int(entry.split(".")[0])
             # seeds.append(s)
+            path_array = []
             traj = np.load(osp.join(trajFolder,entry))
             traj = np.reshape(traj,(traj.shape[0],1))
             # View trajectories from the perspective of the local costmap
@@ -51,6 +52,7 @@ if __name__ == "__main__":
             # PossibleComb(localtraj)
             start = localtraj[0]
             start_x, start_y, start_z = get_points(start)
+            # path_array.append(start_x, start_y, start_z)
             count = count+1
             for points in localtraj:
                 x,y,z = get_points(points)
@@ -59,9 +61,9 @@ if __name__ == "__main__":
                 z = z - start_z
                 path_array.append((x,y,z))
 
-        print(path_array)
-        if(count==10):
-            break
+            print(path_array)
+            if(count==10):
+                break
 
 
 

@@ -53,7 +53,7 @@ if __name__ == "__main__":
             start = localtraj[0]
             start_x, start_y, start_z = get_points(start)
             # path_array.append(start_x, start_y, start_z)
-            # count = count+1
+            count = count+1
             for points in localtraj:
                 x,y,z = get_points(points)
                 x = x - start_x
@@ -62,7 +62,7 @@ if __name__ == "__main__":
                 path_array.append((x,y,z))
 
             np.save(saving_path_folder + str(s) + '.npy',path_array)
-            # print(path_array)
+            print(count)
             # if(count==10):
             #     break
 

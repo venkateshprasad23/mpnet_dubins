@@ -41,7 +41,7 @@ if __name__ == "__main__":
     
     for entry in os.listdir(trajFolder):
         if '.npy' in entry:
-            # s = int(entry.split(".")[0])
+            s = int(entry.split(".")[0])
             # seeds.append(s)
             path_array = []
             traj = np.load(osp.join(trajFolder,entry))
@@ -53,7 +53,7 @@ if __name__ == "__main__":
             start = localtraj[0]
             start_x, start_y, start_z = get_points(start)
             # path_array.append(start_x, start_y, start_z)
-            count = count+1
+            # count = count+1
             for points in localtraj:
                 x,y,z = get_points(points)
                 x = x - start_x
@@ -61,9 +61,10 @@ if __name__ == "__main__":
                 z = z - start_z
                 path_array.append((x,y,z))
 
-            print(path_array)
-            if(count==10):
-                break
+            np.save(saving_path_folder + str(s) + '.npy',path_array)
+            # print(path_array)
+            # if(count==10):
+            #     break
 
 
 

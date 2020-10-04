@@ -12,7 +12,10 @@ count = 0
 saving_path_folder = '/root/my_workspace/data/ref_paths/'
 
 path = np.load(saving_path_folder + '1.npy')
-print(path)
+# print(path)
+print(path[0])
+print(path.shape)
+
 
 # mapping = np.load('map.npy')
 

@@ -57,7 +57,7 @@ if __name__ == "__main__":
                 x = x - start_x
                 y = y - start_y
                 z = z - start_z
-                path_array.append(x,y,z)
+                path_array.append((x,y,z))
 
             print(path_array)
             if(count==10):

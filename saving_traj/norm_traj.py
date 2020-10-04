@@ -35,7 +35,7 @@ def get_points(point):
 
 
 if __name__ == "__main__":
-    trajFolder = '/root/data/modified_paths/'
+    trajFolder = '/root/my_workspace/data/modified_paths/'
     # print("hello")
     count = 0
     path_array = []

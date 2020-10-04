@@ -54,7 +54,9 @@ if __name__ == "__main__":
             count = count+1
             for points in localtraj:
                 points = get_points(points)
-                points = points - start
+                points[0] = points[0] - start[0]
+                points[1] = points[1] - start[1]
+                points[2] = points[2] - start[2]
                 path_array.append(points)
 
             print(path_array)

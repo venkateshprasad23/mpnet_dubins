@@ -16,6 +16,8 @@ from misc import load_net_state, load_opt_state, save_state, to_var, load_seed
 
 worldSize = [2, 2, 2]
 
+get_numpy = lambda x: x.data.cpu().numpy()
+
 def format_input(obs, inputs):
         """
         Formats the input data that needed to be fed into the network

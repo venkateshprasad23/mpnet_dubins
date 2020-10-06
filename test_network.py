@@ -92,7 +92,7 @@ if __name__=="__main__":
         # test loss
         network_output = mpnet_base.mpNet(testInput, testObs).data.cpu()
         print(network_output[:,:2].shape)
-        network_output[,:2] = unnormalize(network_output.squeeze(),worldSize)
+        # network_output[,:2] = unnormalize(network_output.squeeze(),worldSize)
         # test_loss_i = mpnet_base.mpNet.loss(
         #     network_output,
         #     testTarget

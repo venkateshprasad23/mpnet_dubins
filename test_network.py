@@ -79,9 +79,10 @@ if __name__=="__main__":
         testObs, testInput, testTarget)
 
     if torch.cuda.is_available():
-            mpnet_base.mpNet.cuda()
-            mpnet_base.mpNet.mlp.cuda()
-            mpnet_base.mpNet.encoder.cuda()
+    	print("CUDA is available!")
+        mpnet_base.mpNet.cuda()
+        mpnet_base.mpNet.mlp.cuda()
+        mpnet_base.mpNet.encoder.cuda()
 
     with torch.no_grad():
         # test loss

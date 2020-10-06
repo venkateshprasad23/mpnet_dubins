@@ -85,7 +85,7 @@ if __name__=="__main__":
         # test loss
         network_output = mpnet_base.mpNet(testInput, testObs)
         # network_output = unnormalize(network_output,worldSize)
-        test_loss_i = mpNet.loss(
+        test_loss_i = mpnet_base.mpNet.loss(
             network_output,
             testTarget
             ).sum(dim=1).mean()

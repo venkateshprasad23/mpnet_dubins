@@ -91,8 +91,8 @@ if __name__=="__main__":
     with torch.no_grad():
         # test loss
         network_output = mpnet_base.mpNet(testInput, testObs).data.cpu()
-        print(network_output.shape)
-        network_output = unnormalize(network_output.squeeze(),worldSize)
+        print(network_output[,:2].shape)
+        network_output[,:2] = unnormalize(network_output.squeeze(),worldSize)
         # test_loss_i = mpnet_base.mpNet.loss(
         #     network_output,
         #     testTarget

@@ -98,4 +98,7 @@ if __name__=="__main__":
         print("Test Target:")
         print(testTarget)
         print("\n")
+        print("Test Loss:")
+        print(test_loss_i)
+        print("\n")
 

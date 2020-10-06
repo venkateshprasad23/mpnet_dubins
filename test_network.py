@@ -78,6 +78,10 @@ if __name__=="__main__":
     testObs, testInput, testTarget = format_data(
         testObs, testInput, testTarget)
 
+
+    # start = torch.tensor(start).float().reshape(1,-1)
+    # goal = torch.tensor(goal).float().reshape(1,-1)
+
     if torch.cuda.is_available():
         print("CUDA is available!")
         mpnet_base.mpNet.cuda()
@@ -86,7 +90,7 @@ if __name__=="__main__":
 
     with torch.no_grad():
         # test loss
-        network_output = mpnet_base.mpNet(testInput, testObs).data.cpu()
+        network_output = mpnet_base.mpNet(testInput.reshape(1,-1), testObs.reshape(1,-1)).data.cpu()
         network_output = unnormalize(network_output.squeeze(),worldSize)
         # test_loss_i = mpnet_base.mpNet.loss(
         #     network_output,

@@ -73,10 +73,10 @@ if __name__=="__main__":
     
     # sm = torch.jit.script(mpnet_base.mpNet)
     # sm.save(saveTorchScriptModel)
-    test_ds = ThreedDataset(testDataPath, 10)
-    testObs, testInput, testTarget = test_ds[:10]
-    testObs, testInput, testTarget = format_data(
-        testObs, testInput, testTarget)
+    # test_ds = ThreedDataset(testDataPath, 10)
+    # testObs, testInput, testTarget = test_ds[:10]
+    # testObs, testInput, testTarget = format_data(
+    #     testObs, testInput, testTarget)
 
 
     # start = torch.tensor(start).float().reshape(1,-1)
@@ -88,24 +88,45 @@ if __name__=="__main__":
         mpnet_base.mpNet.mlp.cuda()
         mpnet_base.mpNet.encoder.cuda()
 
-    with torch.no_grad():
-        # test loss
-        network_output = mpnet_base.mpNet(testInput, testObs).data.cpu()
-        print(network_output[:1,:].shape)
-        network_output[:1,:] = unnormalize(network_output[:1,:].reshape(1,-1),worldSize)
-        # test_loss_i = mpnet_base.mpNet.loss(
-        #     network_output,
-        #     testTarget
-        #     ).sum(dim=1).mean()
-        # test_loss_i = get_numpy(test_loss_i)
+    # Do a test sampling using the sample code
+    s = 30
+    # observation = env.reset()
+    costmap = np.load('/root/my_workspace/data/modified_costmaps/' + str(s) + '.npy')
+    traj = np.load('/root/my_workspace/data/ref_paths/' + str(s) + '.npy',allow_pickle=True)
+    localtraj = np.copy(traj)
 
-        print("Network Output:")
-        print(network_output)
-        print("\n")
-        print("Test Target:")
-        print(testTarget[1,:])
-        print("\n")
-        # print("Test Loss:")
-        # print(test_loss_i)
-        # print("\n")
+    start = localtraj[0]
+    start = torch.tensor(start).float().reshape(1,-1)
+    goal = localtraj[-1]
+    goal = torch.tensor(goal).float().reshape(1,-1)
+
+    # center_obs = CenterRobot(costmap, costmap.world_to_pixel(start[0,:2].numpy()))
+    network_input = torch.cat((start,goal), dim=1)
+    tobs, tInput = format_input(costmap.unsqueeze(0), network_input)
+    temp = mpnet_base.mpNet(tInput, tobs).data.cpu()
+    temp = unnormalize(temp.squeeze(), worldSize)
+
+    traj = np.load('/root/my_workspace/data/ref_paths/{}.npy'.format(s))
+    print('Network Output : {}, trajectory value: {}'.format(temp, traj[1,:]))
+
+    # with torch.no_grad():
+    #     # test loss
+    #     network_output = mpnet_base.mpNet(testInput, testObs).data.cpu()
+    #     print(network_output[:1,:].shape)
+    #     network_output[:1,:] = unnormalize(network_output[:1,:].reshape(1,-1),worldSize)
+    #     # test_loss_i = mpnet_base.mpNet.loss(
+    #     #     network_output,
+    #     #     testTarget
+    #     #     ).sum(dim=1).mean()
+    #     # test_loss_i = get_numpy(test_loss_i)
+
+    #     print("Network Output:")
+    #     print(network_output)
+    #     print("\n")
+    #     print("Test Target:")
+    #     print(testTarget[1,:])
+    #     print("\n")
+    #     # print("Test Loss:")
+    #     # print(test_loss_i)
+    #     # print("\n")
 

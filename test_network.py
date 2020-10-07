@@ -104,7 +104,7 @@ if __name__=="__main__":
 
     # center_obs = CenterRobot(costmap, costmap.world_to_pixel(start[0,:2].numpy()))
     network_input = torch.cat((start,goal), dim=1)
-    tobs, tInput = format_input(full_obs, network_input)
+    tobs, tInput = format_input(full_obs.unsqueeze(0), network_input)
     temp = mpnet_base.mpNet(tInput, tobs).data.cpu()
     temp = unnormalize(temp.squeeze(), worldSize)
 

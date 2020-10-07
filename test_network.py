@@ -91,7 +91,7 @@ if __name__=="__main__":
     # Do a test sampling using the sample code
     s = 30
     # observation = env.reset()
-    costmap = np.load('/root/my_workspace/data/modified_costmaps/' + str(s) + '.npy')
+    costmap = np.load('/root/my_workspace/data/modified_costmaps/' + str(s) + '.npy')[0]
     traj = np.load('/root/my_workspace/data/ref_paths/' + str(s) + '.npy',allow_pickle=True)
     localtraj = np.copy(traj)
 

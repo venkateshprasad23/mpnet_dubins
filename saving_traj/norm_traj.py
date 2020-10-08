@@ -12,10 +12,15 @@ count = 0
 saving_path_folder = '/root/my_workspace/data/modified_paths/'
 
 path = np.load(saving_path_folder + '2.npy')
-print(path)
-print(path.shape)
+
+for i in range(len(path)):
+	print(check_dist(path[i],path[i+1]))
+
+# print(path.shape)
 
 
+def check_dist(x,y):
+    return math.sqrt((x[0] - y[0])**2 + (x[1] - y[1])**2 + (x[2] - y[2])**2)
 # mapping = np.load('map.npy')
 
 # print("hello")

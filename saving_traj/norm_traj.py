@@ -9,7 +9,7 @@ count = 0
 # map_bounds = 16.3
 # volume = 10
 def check_dist(x,y):
-    return math.sqrt((x[0] - y[0])**2 + (x[1] - y[1])**2 + (x[2] - y[2])**2)
+    return math.sqrt((x[0] - y[0])**2 + (x[1] - y[1])**2 + (x[2] - y[2])**2)<=1
 
 def get_points(point):
     j=0

@@ -29,7 +29,7 @@ def get_points(point):
 
     return u_x, u_y, u_z
 
-traj_folder = '/root/my_workspace/data/modified_paths_retry/'
+trajFolder = '/root/my_workspace/data/modified_paths_retry/'
 
 # path = np.load(traj_folder + '10.npy')
 

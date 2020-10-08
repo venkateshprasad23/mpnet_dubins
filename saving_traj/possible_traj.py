@@ -121,7 +121,7 @@ if __name__ == "__main__":
         if '.npy' in entry:
             # s = int(entry.split(".")[0])
             # seeds.append(s)
-            traj = np.load(osp.join(trajFolder,entry))
+            traj = np.load(osp.join(trajFolder,entry),allow_pickle=True)
             traj = np.reshape(traj,(traj.shape[0],1))
             # View trajectories from the perspective of the local costmap
             localtraj = np.copy(traj)

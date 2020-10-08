@@ -11,9 +11,8 @@ count = 0
 
 saving_path_folder = '/root/my_workspace/data/modified_paths/'
 
-path = np.load(saving_path_folder + '1.npy')
+path = np.load(saving_path_folder + '2.npy')
 print(path)
-print(path[0])
 print(path.shape)
 
 

@@ -31,12 +31,14 @@ def get_points(point):
 
 saving_path_folder = '/root/my_workspace/data/modified_paths/'
 
-path = np.load(saving_path_folder + '2.npy')
+path = np.load(saving_path_folder + '3.npy')
 
-for i in range(len(path)):
+for i in range(len(path)-1):
 	print(check_dist(get_points(path[i]),get_points(path[i+1])))
+	print(path[i],path[i+1])
 
-# print(path.shape)
+print(path.shape)
+
 # mapping = np.load('map.npy')
 
 # print("hello")

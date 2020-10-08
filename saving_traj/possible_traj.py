@@ -70,7 +70,7 @@ def PossibleComb(points):
     
     for k in range(len(possible_comb)):
         if(len(possible_comb[k])>=3):
-            # print(possible_comb[k])   
+            print(possible_comb[k])   
             path_array = []
             costmap_array = []
 
@@ -85,8 +85,8 @@ def PossibleComb(points):
             path_array = np.array(path_array)
             costmap_array = np.array(costmap_array)
 
-            np.save(saving_path_folder + str(count) + '.npy',path_array)
-            np.save(saving_costmap_folder + str(count) + '.npy',costmap_array)
+            # np.save(saving_path_folder + str(count) + '.npy',path_array)
+            # np.save(saving_costmap_folder + str(count) + '.npy',costmap_array)
         else:
             continue
 

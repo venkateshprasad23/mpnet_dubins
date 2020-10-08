@@ -42,14 +42,15 @@ for entry in os.listdir(trajFolder):
         traj = np.reshape(traj,(traj.shape[0],1))
         # View trajectories from the perspective of the local costmap
         path = np.copy(traj)
+        print(path)
         # evlo = evlo+1
         # if(evlo==10):
         #     break
         # print(PossibleComb(localtraj))
         # PossibleComb(localtraj)
         for i in range(len(path)-1):
-			print(check_dist(get_points(path[0]),get_points(path[i+1])))
-			print(path[0],path[i+1])
+			print(check_dist(get_points(path[0]),get_points(path[i])))
+			print(path[0],path[i])
 
 # for i in range(len(path)-1):
 # 	print(check_dist(get_points(path[0]),get_points(path[i+1])))

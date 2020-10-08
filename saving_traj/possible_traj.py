@@ -67,6 +67,8 @@ def PossibleComb(points):
 
     path_array = []
     costmap_array = []
+
+    print(possible_comb)
     
     for k in range(len(possible_comb)):
         if(len(possible_comb[k])>=3):

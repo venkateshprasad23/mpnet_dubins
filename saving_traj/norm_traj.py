@@ -29,9 +29,9 @@ def get_points(point):
 
     return u_x, u_y, u_z
 
-saving_path_folder = '/root/my_workspace/data/modified_paths/'
+saving_path_folder = '/root/my_workspace/data/modified_paths_retry/'
 
-path = np.load(saving_path_folder + '750.npy')
+path = np.load(saving_path_folder + '10.npy')
 
 for i in range(len(path)-1):
 	print(check_dist(get_points(path[i]),get_points(path[i+1])))

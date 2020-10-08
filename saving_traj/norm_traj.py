@@ -52,8 +52,8 @@ for entry in os.listdir(trajFolder):
         # print(PossibleComb(localtraj))
         # PossibleComb(localtraj)
         for i in range(len(path)-1):
-			print(check_dist(get_points(path[0]),get_points(path[i])))
-			print(see_dist(get_points(path[0]),get_points(path[i])))
+			print(check_dist(get_points(path[i]),get_points(path[i+1])))
+			print(see_dist(get_points(path[i]),get_points(path[i+1])))
 			print(path[0],path[i])
 
 # for i in range(len(path)-1):

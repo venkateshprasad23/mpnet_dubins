@@ -9,8 +9,8 @@ count = 0
 map_bounds = 16.3
 volume = 10
 
-saving_path_folder = '/root/my_workspace/data/modified_paths/'
-saving_costmap_folder = '/root/my_workspace/data/modified_costmaps/'
+saving_path_folder = '/root/my_workspace/data/modified_paths_retry/'
+saving_costmap_folder = '/root/my_workspace/data/modified_costmaps_retry/'
 
 mapping = np.load('map.npy')
 
@@ -58,11 +58,11 @@ def PossibleComb(points):
                 comb.append(j+i+1)
             else:
                 break
-        for j, pb in enumerate(reversed(points[:i])):
-            if check_dist(get_points(p1),get_points(pb)):
-                comb.append(i-j-1)
-            else:
-                break
+        # for j, pb in enumerate(reversed(points[:i])):
+        #     if check_dist(get_points(p1),get_points(pb)):
+        #         comb.append(i-j-1)
+        #     else:
+        #         break
         possible_comb[i] = sorted(comb)
 
     path_array = []
@@ -113,6 +113,7 @@ def get_costmap(points):
 if __name__ == "__main__":
     trajFolder = '/root/paths/'
     print("hello")
+    evlo = 0
     for entry in os.listdir(trajFolder):
         if '.npy' in entry:
             # s = int(entry.split(".")[0])
@@ -121,6 +122,9 @@ if __name__ == "__main__":
             traj = np.reshape(traj,(traj.shape[0],1))
             # View trajectories from the perspective of the local costmap
             localtraj = np.copy(traj)
+            evlo = evlo+1
+            if(evlo==10):
+                break
             # print(PossibleComb(localtraj))
             PossibleComb(localtraj)
 

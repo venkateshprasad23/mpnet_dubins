@@ -29,15 +29,33 @@ def get_points(point):
 
     return u_x, u_y, u_z
 
-saving_path_folder = '/root/my_workspace/data/modified_paths_retry/'
+traj_folder = '/root/my_workspace/data/modified_paths_retry/'
 
-path = np.load(saving_path_folder + '10.npy')
+# path = np.load(traj_folder + '10.npy')
 
-for i in range(len(path)-1):
-	print(check_dist(get_points(path[0]),get_points(path[i+1])))
-	print(path[0],path[i+1])
+for entry in os.listdir(trajFolder):
+    if '.npy' in entry:
+    	print("\n")
+        # s = int(entry.split(".")[0])
+        # seeds.append(s)
+        traj = np.load(osp.join(trajFolder,entry))
+        traj = np.reshape(traj,(traj.shape[0],1))
+        # View trajectories from the perspective of the local costmap
+        path = np.copy(traj)
+        # evlo = evlo+1
+        # if(evlo==10):
+        #     break
+        # print(PossibleComb(localtraj))
+        # PossibleComb(localtraj)
+        for i in range(len(path)-1):
+			print(check_dist(get_points(path[0]),get_points(path[i+1])))
+			print(path[0],path[i+1])
 
-print(path.shape)
+# for i in range(len(path)-1):
+# 	print(check_dist(get_points(path[0]),get_points(path[i+1])))
+# 	print(path[0],path[i+1])
+
+# print(path.shape)
 
 # mapping = np.load('map.npy')
 

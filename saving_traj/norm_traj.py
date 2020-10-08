@@ -34,8 +34,8 @@ saving_path_folder = '/root/my_workspace/data/modified_paths_retry/'
 path = np.load(saving_path_folder + '10.npy')
 
 for i in range(len(path)-1):
-	print(check_dist(get_points(path[i]),get_points(path[i+1])))
-	print(path[i],path[i+1])
+	print(check_dist(get_points(path[0]),get_points(path[i+1])))
+	print(path[0],path[i+1])
 
 print(path.shape)
 

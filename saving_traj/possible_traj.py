@@ -17,22 +17,23 @@ mapping = np.load('map.npy')
 print("hello")
 
 def get_points(point):
-    j=0
-    z = str(point[0])
-    lines = z.splitlines()
-    for j in range(3):
-        h = lines[j]       
+    
+    # j=0
+    # z = str(point[0])
+    # lines = z.splitlines()
+    # for j in range(3):
+    #     h = lines[j]       
 
-        if(j==0):
-            u_x = float(h[4:len(h)])
+    #     if(j==0):
+    #         u_x = float(h[4:len(h)])
 
-        elif(j==1):
-            u_y = float(h[4:len(h)])
+    #     elif(j==1):
+    #         u_y = float(h[4:len(h)])
 
-        elif(j==2):
-            u_z = float(h[4:len(h)])
+    #     elif(j==2):
+    #         u_z = float(h[4:len(h)])
 
-    return u_x, u_y, u_z
+    return point[0].x, point[0].y, point[0].y
 
 # check_dist = lambda x,y: all(math.sqrt((x[0] - y[0])**2 + (x[1] - y[1])**2 + (x[2] - y[2])**2)<=2)
 

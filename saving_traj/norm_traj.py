@@ -97,7 +97,7 @@ if __name__ == "__main__":
             s = int(entry.split(".")[0])
             # seeds.append(s)
             path_array = []
-            traj = np.load(osp.join(trajFolder,entry))
+            traj = np.load(osp.join(trajFolder,entry),allow_pickle=True)
             traj = np.reshape(traj,(traj.shape[0],1))
             # View trajectories from the perspective of the local costmap
             localtraj = np.copy(traj)
@@ -113,6 +113,7 @@ if __name__ == "__main__":
                 y = y - start_y
                 z = z - start_z
                 path_array.append((x,y,z))
+                print(x,y,z)
 
             np.save(saving_path_folder + str(s) + '.npy',path_array)
             print(count)

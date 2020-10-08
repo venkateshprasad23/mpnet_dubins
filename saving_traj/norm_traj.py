@@ -11,6 +11,9 @@ count = 0
 def check_dist(x,y):
     return math.sqrt((x[0] - y[0])**2 + (x[1] - y[1])**2 + (x[2] - y[2])**2)<=1
 
+def see_dist(x,y):
+    return math.sqrt((x[0] - y[0])**2 + (x[1] - y[1])**2 + (x[2] - y[2])**2)
+
 def get_points(point):
     j=0
     z = str(point[0])
@@ -50,6 +53,7 @@ for entry in os.listdir(trajFolder):
         # PossibleComb(localtraj)
         for i in range(len(path)-1):
 			print(check_dist(get_points(path[0]),get_points(path[i])))
+			print(see_dist(get_points(path[0]),get_points(path[i])))
 			print(path[0],path[i])
 
 # for i in range(len(path)-1):

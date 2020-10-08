@@ -33,7 +33,7 @@ def get_points(point):
     #     elif(j==2):
     #         u_z = float(h[4:len(h)])
 
-    return point[0].x, point[0].y, point[0].y
+    return point[0].x, point[0].y, point[0].z
 
 # check_dist = lambda x,y: all(math.sqrt((x[0] - y[0])**2 + (x[1] - y[1])**2 + (x[2] - y[2])**2)<=2)
 
@@ -59,11 +59,11 @@ def PossibleComb(points):
                 comb.append(j+i+1)
             else:
                 break
-        # for j, pb in enumerate(reversed(points[:i])):
-        #     if check_dist(get_points(p1),get_points(pb)):
-        #         comb.append(i-j-1)
-        #     else:
-        #         break
+        for j, pb in enumerate(reversed(points[:i])):
+            if check_dist(get_points(p1),get_points(pb)):
+                comb.append(i-j-1)
+            else:
+                break
         possible_comb[i] = sorted(comb)
 
     path_array = []
@@ -88,8 +88,8 @@ def PossibleComb(points):
             path_array = np.array(path_array)
             costmap_array = np.array(costmap_array)
 
-            # np.save(saving_path_folder + str(count) + '.npy',path_array)
-            # np.save(saving_costmap_folder + str(count) + '.npy',costmap_array)
+            np.save(saving_path_folder + str(count) + '.npy',path_array)
+            np.save(saving_costmap_folder + str(count) + '.npy',costmap_array)
         else:
             continue
 
@@ -126,8 +126,7 @@ if __name__ == "__main__":
             # View trajectories from the perspective of the local costmap
             localtraj = np.copy(traj)
             evlo = evlo+1
-            if(evlo==10):
-                break
+            print(evlo)
             # print(PossibleComb(localtraj))
             PossibleComb(localtraj)
 

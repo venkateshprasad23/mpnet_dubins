@@ -95,17 +95,17 @@ def PossibleComb(points):
 
     # return possible_comb
 def get_costmap(points):
-    points = get_points(points)
+    x,y,z = get_points(points)
     
-    index_x = (points[0] + map_bounds)/(0.2)
+    index_x = (x + map_bounds)/(0.2)
     index_x = index_x + 10
     index_x = int(index_x)
 
-    index_y = (points[1] + map_bounds)/(0.2)
+    index_y = (y + map_bounds)/(0.2)
     index_y = index_x + 10
     index_y = int(index_x)
 
-    index_z = (points[2] + map_bounds)/(0.2)
+    index_z = (z + map_bounds)/(0.2)
     index_z = index_x + 10
     index_z = int(index_x)
 

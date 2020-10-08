@@ -11,18 +11,32 @@ count = 0
 def check_dist(x,y):
     return math.sqrt((x[0] - y[0])**2 + (x[1] - y[1])**2 + (x[2] - y[2])**2)
 
+def get_points(point):
+    j=0
+    z = str(point[0])
+    lines = z.splitlines()
+    for j in range(3):
+        h = lines[j]       
+
+        if(j==0):
+            u_x = float(h[4:len(h)])
+
+        elif(j==1):
+            u_y = float(h[4:len(h)])
+
+        elif(j==2):
+            u_z = float(h[4:len(h)])
+
+    return u_x, u_y, u_z
+
 saving_path_folder = '/root/my_workspace/data/modified_paths/'
 
 path = np.load(saving_path_folder + '2.npy')
 
 for i in range(len(path)):
-	print(check_dist(path[i],path[i+1]))
+	print(check_dist(get_points(path[i]),get_points(path[i+1])))
 
 # print(path.shape)
-
-
-def check_dist(x,y):
-    return math.sqrt((x[0] - y[0])**2 + (x[1] - y[1])**2 + (x[2] - y[2])**2)
 # mapping = np.load('map.npy')
 
 # print("hello")

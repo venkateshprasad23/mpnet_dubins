@@ -69,7 +69,7 @@ def PossibleComb(points):
 
             for h in range(len(possible_comb[k])):
                 path_array.append(get_points(points[possible_comb[k][h]]))
-                print(possible_comb[k][h])
+                print(points[possible_comb[k][h]])
                 costmap_array.append(get_costmap(points[possible_comb[k][h]]))
             
             # print(path_array)

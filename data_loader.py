@@ -50,7 +50,7 @@ class ThreedDataset(torch.utils.data.Dataset):
         self.numSamples = numSamples
         self.inputs = np.zeros((numSamples, 6))
         self.targets = np.zeros((numSamples, 3))
-        self.obs = np.zeros((numSamples, 1, 20, 20, 20))
+        self.obs = np.zeros((numSamples, 1, 40, 40, 40))
         i = 0
         done = False
 
@@ -125,7 +125,7 @@ class ThreedIterDataset(torch.utils.data.IterableDataset):
         # localtraj[:,:2] = localtraj[:,:2] - np.array([msg.info.origin.position.x, msg.info.origin.position.y])
         samples = traj.shape[0] - 1
 
-        obs = np.ones((samples, 1, 20, 20, 20))
+        obs = np.ones((samples, 1, 40, 40, 40))
         inputs = np.zeros((samples, 6))
         targets = np.zeros((samples, 3))
         # j = 0

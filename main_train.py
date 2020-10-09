@@ -17,7 +17,7 @@ def train(args):
     network_parameters = {
         'normalize': normalize,
         'denormalize': denormalize,
-        'encoderInputDim': [1, 20, 20, 20],
+        'encoderInputDim': [1, 40, 40, 40],
         'encoderOutputDim': 128,
         # 'worldSize': [27, 27, np.pi],
         'worldSize' : [2, 2, 2],

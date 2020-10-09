@@ -99,20 +99,20 @@ if __name__ == "__main__":
             path_array = []
             traj = np.load(osp.join(trajFolder,entry),allow_pickle=True)
             print(traj.shape)
-            traj = np.reshape(traj,(traj.shape[0],1))
+            # traj = np.reshape(traj,(traj.shape[0],1))
             # View trajectories from the perspective of the local costmap
             localtraj = np.copy(traj)
             # print(PossibleComb(localtraj))
             # PossibleComb(localtraj)
-            start_x, start_y, start_z = localtraj[0]
+            start = localtraj[0]
             # start_x, start_y, start_z = get_points(start)
             # path_array.append(start_x, start_y, start_z)
             count = count+1
             for points in localtraj:
-                x,y,z = points
-                x = x - start_x
-                y = y - start_y
-                z = z - start_z
+                x,y,z = points[0],points[1],points[2]
+                x = x - start[0]
+                y = y - start[1]
+                z = z - start[2]
                 path_array.append((x,y,z))
                 print(x,y,z)
 

@@ -44,12 +44,12 @@ def PossibleComb(points):
         comb = [i]
         for j,pf in enumerate(points[i+1:]):
             if check_dist(get_points(p1),get_points(pf)):
-                print(see_dist(get_points(p1),get_points(pf)))
-                print("p1 :",get_points(p1))
-                print("Index :",i)
-                print("pf :",get_points(pf))
-                print(j+i+1)
-                print(points[j+i+1])
+                # print(see_dist(get_points(p1),get_points(pf)))
+                # print("p1 :",get_points(p1))
+                # print("Index :",i)
+                # print("pf :",get_points(pf))
+                # print(j+i+1)
+                # print(points[j+i+1])
                 comb.append(j+i+1)
             else:
                 break
@@ -65,7 +65,7 @@ def PossibleComb(points):
 
     # print(get_points(points[0]))
 
-    print(possible_comb)
+    # print(possible_comb)
     
     for k in range(len(possible_comb)):
         if(len(possible_comb[k])>=3):
@@ -75,7 +75,7 @@ def PossibleComb(points):
 
             for h in range(len(possible_comb[k])):
                 path_array.append(get_points(points[possible_comb[k][h]]))
-                print(points[possible_comb[k][h]])
+                # print(points[possible_comb[k][h]])
                 costmap_array.append(get_costmap(points[possible_comb[k][h]]))
             
             # print(path_array)
@@ -85,8 +85,8 @@ def PossibleComb(points):
             path_array = np.array(path_array)
             costmap_array = np.array(costmap_array)
 
-            # np.save(saving_path_folder + str(count) + '.npy',path_array)
-            # np.save(saving_costmap_folder + str(count) + '.npy',costmap_array)
+            np.save(saving_path_folder + str(count) + '.npy',path_array)
+            np.save(saving_costmap_folder + str(count) + '.npy',costmap_array)
         else:
             continue
 

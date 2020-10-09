@@ -55,7 +55,7 @@ def PossibleComb(points):
 
     # print(get_points(points[0]))
 
-    # print(possible_comb)
+    print(possible_comb)
     
     for k in range(len(possible_comb)):
         if(len(possible_comb[k])>=3):

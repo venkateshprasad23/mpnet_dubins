@@ -18,31 +18,31 @@ import torch.utils.data
 #     return (z + np.pi) % (2 * np.pi) - np.pi
 
 
-def get_points(point):
-    '''
-    Converts world co-ordinates to pixel co-ordinates
-    :param point: The desired point to be converted
-    :param x0: The x co-ordinate of the image origin
-    :param y0: The y co-ordinate of the image origin
-    :param resl: The resolution of the costmap
-    :returns [mx,my] index corresponding to the image 
-    '''
-    j=0
-    z = str(point[0])
-    lines = z.splitlines()
-    for j in range(3):
-        h = lines[j]       
+# def get_points(point):
+#     '''
+#     Converts world co-ordinates to pixel co-ordinates
+#     :param point: The desired point to be converted
+#     :param x0: The x co-ordinate of the image origin
+#     :param y0: The y co-ordinate of the image origin
+#     :param resl: The resolution of the costmap
+#     :returns [mx,my] index corresponding to the image 
+#     '''
+#     j=0
+#     z = str(point[0])
+#     lines = z.splitlines()
+#     for j in range(3):
+#         h = lines[j]       
 
-        if(j==0):
-            u_x = float(h[4:len(h)])
+#         if(j==0):
+#             u_x = float(h[4:len(h)])
 
-        elif(j==1):
-            u_y = float(h[4:len(h)])
+#         elif(j==1):
+#             u_y = float(h[4:len(h)])
 
-        elif(j==2):
-            u_z = float(h[4:len(h)])
+#         elif(j==2):
+#             u_z = float(h[4:len(h)])
 
-    return u_x, u_y, u_z
+#     return u_x, u_y, u_z
 
 class ThreedDataset(torch.utils.data.Dataset):
     def __init__(self, folder_loc, numSamples):

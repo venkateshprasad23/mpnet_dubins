@@ -43,11 +43,11 @@ def PossibleComb(points):
                 comb.append(j+i+1)
             else:
                 break
-        for j, pb in enumerate(reversed(points[:i])):
-            if check_dist(get_points(p1),get_points(pb)):
-                comb.append(i-j-1)
-            else:
-                break
+        # for j, pb in enumerate(reversed(points[:i])):
+        #     if check_dist(get_points(p1),get_points(pb)):
+        #         comb.append(i-j-1)
+        #     else:
+        #         break
         possible_comb[i] = sorted(comb)
 
     path_array = []

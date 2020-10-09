@@ -94,7 +94,7 @@ if __name__ == "__main__":
     
     for entry in os.listdir(trajFolder):
         if '.npy' in entry:
-            s = int(entry.split(".")[0])
+            # s = int(entry.split(".")[0])
             # seeds.append(s)
             path_array = []
             traj = np.load(osp.join(trajFolder,entry),allow_pickle=True)

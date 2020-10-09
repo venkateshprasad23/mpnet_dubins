@@ -1,4 +1,7 @@
 import numpy as np
+import os
+
+import os.path as osp
 
 if __name__ == "__main__":
     trajFolder = '/root/paths/'

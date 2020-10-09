@@ -7,7 +7,7 @@ import math
 
 count = 0
 map_bounds = 16.3
-volume = 10
+volume = 20
 
 saving_path_folder = '/root/my_workspace/data/modified_paths_retry/'
 saving_costmap_folder = '/root/my_workspace/data/modified_costmaps_retry/'
@@ -77,7 +77,7 @@ def PossibleComb(points):
                 costmap_array.append(get_costmap(points[huhu]))
             
             # print(path_array)
-            
+
             # print("\n")
             # print(costmap_array)
             count = count+1;
@@ -91,18 +91,18 @@ def PossibleComb(points):
 
     # return possible_comb
 def get_costmap(points):
-    x,y,z = get_points(points)
+    x,y,z = points[0],points[1],points[2]
     
     index_x = (x + map_bounds)/(0.2)
-    index_x = index_x + 10
+    index_x = index_x + 20
     index_x = int(index_x)
 
     index_y = (y + map_bounds)/(0.2)
-    index_y = index_x + 10
+    index_y = index_x + 20
     index_y = int(index_x)
 
     index_z = (z + map_bounds)/(0.2)
-    index_z = index_x + 10
+    index_z = index_x + 20
     index_z = int(index_x)
 
     costmap = mapping[index_x-volume:index_x+volume,index_y-volume:index_y+volume,index_z-volume:index_z+volume]

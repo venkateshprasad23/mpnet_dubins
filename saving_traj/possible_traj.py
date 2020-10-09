@@ -22,8 +22,7 @@ def get_points(point):
 # check_dist = lambda x,y: all(math.sqrt((x[0] - y[0])**2 + (x[1] - y[1])**2 + (x[2] - y[2])**2)<=2)
 
 def check_dist(x,y):
-    print(math.sqrt((x[0] - y[0])**2 + (x[1] - y[1])**2 + (x[2] - y[2])**2))
-    print(math.sqrt((x[0] - y[0])**2 + (x[1] - y[1])**2 + (x[2] - y[2])**2)<=1)
+
     return math.sqrt((x[0] - y[0])**2 + (x[1] - y[1])**2 + (x[2] - y[2])**2)<=1
 
 def PossibleComb(points):
@@ -42,6 +41,8 @@ def PossibleComb(points):
         comb = [i]
         for j,pf in enumerate(points[i+1:]):
             if check_dist(get_points(p1),get_points(pf)):
+                print(math.sqrt((x[0] - y[0])**2 + (x[1] - y[1])**2 + (x[2] - y[2])**2))
+                print(math.sqrt((x[0] - y[0])**2 + (x[1] - y[1])**2 + (x[2] - y[2])**2)<=1)
                 print("p1 :",get_points(p1))
                 print("Index :",i)
                 print("pf :",get_points(pf))

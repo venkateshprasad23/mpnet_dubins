@@ -53,11 +53,11 @@ def PossibleComb(points):
                 comb.append(j+i+1)
             else:
                 break
-        for j, pb in enumerate(reversed(points[:i])):
-            if check_dist(get_points(p1),get_points(pb)):
-                comb.append(i-j-1)
-            else:
-                break
+        # for j, pb in enumerate(reversed(points[:i])):
+        #     if check_dist(get_points(p1),get_points(pb)):
+        #         comb.append(i-j-1)
+        #     else:
+        #         break
         possible_comb[i] = sorted(comb)
 
     path_array = []
@@ -74,8 +74,10 @@ def PossibleComb(points):
             costmap_array = []
 
             for huhu in possible_comb[gugu]:
-                path_array.append(get_points(points[huhu]))
                 print(get_points(points[huhu]))
+                # print(see_dist(get_points()))
+                path_array.append(get_points(points[huhu]))
+                
                 costmap_array.append(get_costmap(points[huhu]))
             
             # print(path_array)

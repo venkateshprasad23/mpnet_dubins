@@ -65,18 +65,18 @@ def PossibleComb(points):
 
     # print(get_points(points[0]))
 
-    # print(possible_comb)
+    print(possible_comb)
     
-    for k in range(len(possible_comb)):
-        if(len(possible_comb[k])>=3):
-            # print(possible_comb[k])   
+    for gugu in possible_comb:
+        if(len(gugu)>=3):
+            print(gugu)   
             path_array = []
             costmap_array = []
 
-            for h in range(len(possible_comb[k])):
-                path_array.append(get_points(points[possible_comb[k][h]]))
-                # print(points[possible_comb[k][h]])
-                costmap_array.append(get_costmap(points[possible_comb[k][h]]))
+            for huhu in gugu:
+                path_array.append(get_points(points[huhu]))
+                print(get_points(points[huhu]))
+                costmap_array.append(get_costmap(points[huhu]))
             
             # print(path_array)
             # print("\n")

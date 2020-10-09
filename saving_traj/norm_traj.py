@@ -117,7 +117,7 @@ if __name__ == "__main__":
                 y = y - start[1]
                 z = z - start[2]
                 path_array.append((x,y,z))
-                # print(x,y,z)
+                print(x,y,z)
 
             np.save(saving_path_folder + str(s) + '.npy',path_array)
             print(count)

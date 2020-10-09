@@ -44,6 +44,7 @@ def PossibleComb(points):
                 print("Index :",i)
                 print("pf :",pf)
                 print(j+i+1)
+                print(points[j+i+1])
                 comb.append(j+i+1)
             else:
                 break

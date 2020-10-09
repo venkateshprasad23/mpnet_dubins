@@ -43,7 +43,7 @@ def PossibleComb(points):
     for i, p1 in enumerate(points[:-1]):
         comb = [i]
         for j,pf in enumerate(points[i+1:]):
-            if check_dist(get_points(p1),get_points(pf)):
+            if check_dist(p1,pf):
                 # print(see_dist(get_points(p1),get_points(pf)))
                 # print("p1 :",get_points(p1))
                 # print("Index :",i)
@@ -53,11 +53,6 @@ def PossibleComb(points):
                 comb.append(j+i+1)
             else:
                 break
-        # for j, pb in enumerate(reversed(points[:i])):
-        #     if check_dist(get_points(p1),get_points(pb)):
-        #         comb.append(i-j-1)
-        #     else:
-        #         break
         possible_comb[i] = sorted(comb)
 
     path_array = []
@@ -74,13 +69,15 @@ def PossibleComb(points):
             costmap_array = []
 
             for huhu in possible_comb[gugu]:
-                print(get_points(points[huhu]))
+                print(points[huhu])
                 # print(see_dist(get_points()))
-                path_array.append(get_points(points[huhu]))
+                path_array.append(points[huhu])
+
                 
                 costmap_array.append(get_costmap(points[huhu]))
             
             # print(path_array)
+            
             # print("\n")
             # print(costmap_array)
             count = count+1;
@@ -113,20 +110,15 @@ def get_costmap(points):
     return costmap
 
 if __name__ == "__main__":
-    trajFolder = '/root/paths/'
+    trajFolder = '/root/paths_retry/'
     print("hello")
     evlo = 0
     for entry in os.listdir(trajFolder):
         if '.npy' in entry:
-            # s = int(entry.split(".")[0])
-            # seeds.append(s)
-            traj = np.load(osp.join(trajFolder,entry),allow_pickle=True)
-            traj = np.reshape(traj,(traj.shape[0],1))
-            # View trajectories from the perspective of the local costmap
+            traj = np.load(osp.join(trajFolder,entry))
             localtraj = np.copy(traj)
             evlo = evlo+1
             print(evlo)
-            # print(PossibleComb(localtraj))
             PossibleComb(localtraj)
 
 

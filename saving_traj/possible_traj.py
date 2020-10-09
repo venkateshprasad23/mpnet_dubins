@@ -40,9 +40,9 @@ def PossibleComb(points):
         comb = [i]
         for j,pf in enumerate(points[i+1:]):
             if check_dist(get_points(p1),get_points(pf)):
-                print("p1 :",p1)
+                print("p1 :",get_points(p1))
                 print("Index :",i)
-                print("pf :",pf)
+                print("pf :",get_points(pf))
                 print(j+i+1)
                 print(points[j+i+1])
                 comb.append(j+i+1)

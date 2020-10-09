@@ -112,6 +112,7 @@ if __name__ == "__main__":
             for points in localtraj:
                 x,y,z = points[0],points[1],points[2]
                 print(x,y,z)
+                print(see_dist(points,start))
                 x = x - start[0]
                 y = y - start[1]
                 z = z - start[2]

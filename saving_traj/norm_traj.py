@@ -9,7 +9,7 @@ count = 0
 # map_bounds = 16.3
 # volume = 10
 def check_dist(x,y):
-    return math.sqrt((x[0] - y[0])**2 + (x[1] - y[1])**2 + (x[2] - y[2])**2)<=1
+    return math.sqrt((x[0] - y[0])**2 + (x[1] - y[1])**2 + (x[2] - y[2])**2)<=2
 
 def see_dist(x,y):
     return math.sqrt((x[0] - y[0])**2 + (x[1] - y[1])**2 + (x[2] - y[2])**2)
@@ -94,10 +94,10 @@ if __name__ == "__main__":
     
     for entry in os.listdir(trajFolder):
         if '.npy' in entry:
-            # s = int(entry.split(".")[0])
+            s = int(entry.split(".")[0])
             # seeds.append(s)
             path_array = []
-            traj = np.load(osp.join(trajFolder,entry),allow_pickle=True)
+            traj = np.load(osp.join(trajFolder,entry))
             # print(traj.shape)
             # traj = np.reshape(traj,(traj.shape[0],1))
             # View trajectories from the perspective of the local costmap
@@ -119,7 +119,7 @@ if __name__ == "__main__":
                 path_array.append((x,y,z))
                 # print(x,y,z)
 
-            # np.save(saving_path_folder + str(s) + '.npy',path_array)
+            np.save(saving_path_folder + str(s) + '.npy',path_array)
             print(count)
             # if(count==10):
             #     break

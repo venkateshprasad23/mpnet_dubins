@@ -98,25 +98,26 @@ if __name__ == "__main__":
             # seeds.append(s)
             path_array = []
             traj = np.load(osp.join(trajFolder,entry),allow_pickle=True)
-            print(traj.shape)
+            # print(traj.shape)
             # traj = np.reshape(traj,(traj.shape[0],1))
             # View trajectories from the perspective of the local costmap
             localtraj = np.copy(traj)
             # print(PossibleComb(localtraj))
             # PossibleComb(localtraj)
             start = localtraj[0]
+            print(start)
             # start_x, start_y, start_z = get_points(start)
             # path_array.append(start_x, start_y, start_z)
             count = count+1
-            for points in localtraj:
-                x,y,z = points[0],points[1],points[2]
-                x = x - start[0]
-                y = y - start[1]
-                z = z - start[2]
-                path_array.append((x,y,z))
-                print(x,y,z)
+            # for points in localtraj:
+            #     x,y,z = points[0],points[1],points[2]
+            #     x = x - start[0]
+            #     y = y - start[1]
+            #     z = z - start[2]
+            #     path_array.append((x,y,z))
+            #     print(x,y,z)
 
-            np.save(saving_path_folder + str(s) + '.npy',path_array)
+            # np.save(saving_path_folder + str(s) + '.npy',path_array)
             print(count)
             # if(count==10):
             #     break

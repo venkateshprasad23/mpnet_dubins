@@ -69,7 +69,7 @@ def PossibleComb(points):
     path_array = []
     costmap_array = []
 
-    print(points)
+    print(get_points(points[0]))
 
     # print(possible_comb)
     

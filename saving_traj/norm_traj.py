@@ -109,13 +109,14 @@ if __name__ == "__main__":
             # start_x, start_y, start_z = get_points(start)
             # path_array.append(start_x, start_y, start_z)
             count = count+1
-            # for points in localtraj:
-            #     x,y,z = points[0],points[1],points[2]
-            #     x = x - start[0]
-            #     y = y - start[1]
-            #     z = z - start[2]
-            #     path_array.append((x,y,z))
-            #     print(x,y,z)
+            for points in localtraj:
+                x,y,z = points[0],points[1],points[2]
+                print(x,y,z)
+                x = x - start[0]
+                y = y - start[1]
+                z = z - start[2]
+                path_array.append((x,y,z))
+                # print(x,y,z)
 
             # np.save(saving_path_folder + str(s) + '.npy',path_array)
             print(count)

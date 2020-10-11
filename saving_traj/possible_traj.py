@@ -7,7 +7,7 @@ import math
 
 count = 0
 map_bounds = 16.3
-volume = 20
+volume = 10
 
 saving_path_folder = '/root/my_workspace/data/modified_paths_retry/'
 saving_costmap_folder = '/root/my_workspace/data/modified_costmaps_retry/'
@@ -22,10 +22,10 @@ def get_points(point):
 # check_dist = lambda x,y: all(math.sqrt((x[0] - y[0])**2 + (x[1] - y[1])**2 + (x[2] - y[2])**2)<=2)
 
 def check_dist(x,y):
-    return math.sqrt((x[0] - y[0])**2 + (x[1] - y[1])**2 + (x[2] - y[2])**2)<=2
+    return math.sqrt((x[0] - y[0])**2 + (x[1] - y[1])**2 + (x[2] - y[2])**2)<=1.75
 
 def see_dist(x,y):
-    print(math.sqrt((x[0] - y[0])**2 + (x[1] - y[1])**2 + (x[2] - y[2])**2)<=1)
+    # print(math.sqrt((x[0] - y[0])**2 + (x[1] - y[1])**2 + (x[2] - y[2])**2)<=1)
     return math.sqrt((x[0] - y[0])**2 + (x[1] - y[1])**2 + (x[2] - y[2])**2)
 
 def PossibleComb(points):
@@ -94,15 +94,15 @@ def get_costmap(points):
     x,y,z = points[0],points[1],points[2]
     
     index_x = (x + map_bounds)/(0.2)
-    index_x = index_x + 20
+    index_x = index_x + 10
     index_x = int(index_x)
 
     index_y = (y + map_bounds)/(0.2)
-    index_y = index_x + 20
+    index_y = index_x + 10
     index_y = int(index_x)
 
     index_z = (z + map_bounds)/(0.2)
-    index_z = index_x + 20
+    index_z = index_x + 10
     index_z = int(index_x)
 
     costmap = mapping[index_x-volume:index_x+volume,index_y-volume:index_y+volume,index_z-volume:index_z+volume]

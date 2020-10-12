@@ -1,6 +1,7 @@
 # Save the script of the model
 import torch
 import numpy as np
+import os.path as osp
 
 import voxel_ae as voxelNet
 import model as model
@@ -56,6 +57,7 @@ def format_data(obs, inputs, targets):
 if __name__=="__main__":
     modelPath = '/root/my_workspace/data/trained_models/mpnet_epoch_299.pkl'
     testDataPath='/root/my_workspace/data/test_network/'
+    folder_loc = '/root/my_workspace/data/main_train/train/'
     # saveTorchScriptModel = '/root/data/grid_world_2_0_06/trained_models/mpnet_model_289.pt'
 
     network_param = {
@@ -70,17 +72,6 @@ if __name__=="__main__":
 
     mpnet_base = MPnetBase(**network_param)
     mpnet_base.load_network_parameters(modelPath)
-    
-    # sm = torch.jit.script(mpnet_base.mpNet)
-    # sm.save(saveTorchScriptModel)
-    # test_ds = ThreedDataset(testDataPath, 10)
-    # testObs, testInput, testTarget = test_ds[:10]
-    # testObs, testInput, testTarget = format_data(
-    #     testObs, testInput, testTarget)
-
-
-    # start = torch.tensor(start).float().reshape(1,-1)
-    # goal = torch.tensor(goal).float().reshape(1,-1)
 
     if torch.cuda.is_available():
         print("CUDA is available!")
@@ -88,48 +79,28 @@ if __name__=="__main__":
         mpnet_base.mpNet.mlp.cuda()
         mpnet_base.mpNet.encoder.cuda()
 
-    # Do a test sampling using the sample code
-    s = 1
-    # observation = env.reset()
-    costmap = np.load('/root/my_workspace/data/modified_costmaps_retry/' + str(s) + '.npy')[0]
-    traj = np.load('/root/my_workspace/data/ref_paths/' + str(s) + '.npy',allow_pickle=True)
-    localtraj = np.copy(traj)
+    idx = 15
+    costmap = np.load(osp.join(folder_loc,'costmaps','{}.npy'.format(idx)))
+    traj = np.load(osp.join(folder_loc,'paths','{}.npy'.format(idx)))
 
-    start = localtraj[0]
+    start = traj[0]
     start = torch.tensor(start).float().reshape(1,-1)
-    goal = localtraj[-1]
+    goal = traj[-1]
     goal = torch.tensor(goal).float().reshape(1,-1)
 
-    full_obs = torch.Tensor(costmap).unsqueeze(0)
+    obs = costmap[0]
 
-    # center_obs = CenterRobot(costmap, costmap.world_to_pixel(start[0,:2].numpy()))
-    with torch.no_grad():
-        network_input = torch.cat((start,goal), dim=1)
-        tobs, tInput = format_input(full_obs.unsqueeze(0), network_input)
-        temp = mpnet_base.mpNet(tInput, tobs).data.cpu()
-        temp = unnormalize(temp.squeeze(), worldSize)
+    network_input = torch.cat((start,goal), dim=1)
+    tobs, tInput = format_input(obs, network_input)
+    temp = mpnet_base.mpNet(tInput, tobs).data.cpu()
+    temp = unnormalize(temp.squeeze(), worldSize)
 
-    traj = np.load('/root/my_workspace/data/ref_paths/{}.npy'.format(s))
     print('Network Output : {}, trajectory value: {}'.format(temp, traj[1,:]))
 
-    # with torch.no_grad():
-    #     # test loss
-    #     network_output = mpnet_base.mpNet(testInput, testObs).data.cpu()
-    #     print(network_output[:1,:].shape)
-    #     network_output[:1,:] = unnormalize(network_output[:1,:].reshape(1,-1),worldSize)
-    #     # test_loss_i = mpnet_base.mpNet.loss(
-    #     #     network_output,
-    #     #     testTarget
-    #     #     ).sum(dim=1).mean()
-    #     # test_loss_i = get_numpy(test_loss_i)
 
-    #     print("Network Output:")
-    #     print(network_output)
-    #     print("\n")
-    #     print("Test Target:")
-    #     print(testTarget[1,:])
-    #     print("\n")
-    #     # print("Test Loss:")
-    #     # print(test_loss_i)
-    #     # print("\n")
 
+
+
+    
+
+    

@@ -96,7 +96,7 @@ if __name__=="__main__":
     temp = mpnet_base.mpNet(tInput, tobs).data.cpu()
     temp = unnormalize(temp.squeeze(), worldSize)
 
-    print('Network Output : {}, trajectory value: {}'.format(temp, traj[1,:]))
+    print('Network Output : {}, trajectory value: {}'.format(temp, traj[:,:]))
 
 
 

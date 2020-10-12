@@ -111,7 +111,13 @@ if __name__=="__main__":
     print("Unsqueezed shape: ", tobs.shape)
     temp = mpnet_base.mpNet(tInput, tobs).data.cpu()
     temp = unnormalize(temp.squeeze(), worldSize)
-    temp = start + temp
+    # temp = start + temp
+    test_loss_i = mpnet_base.mpNet.loss(
+                    temp,
+                    traj[1,:]
+                    ).sum(dim=1)
+    test_loss_i = get_numpy(test_loss_i)
+    print(test_loss_i)
 
     print('Network Output : {}, trajectory value: {}'.format(temp, traj[:,:]))
 

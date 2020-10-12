@@ -107,7 +107,7 @@ if __name__=="__main__":
     print("Network Input: ",network_input)
     print("Shape: ",network_input.shape)
     tobs, tInput = format_input(obs.unsqueeze(0), network_input)
-    print("Unsqueezed shape: ", tobs)
+    print("Unsqueezed shape: ", tobs.shape)
     temp = mpnet_base.mpNet(tInput, tobs).data.cpu()
     temp = unnormalize(temp.squeeze(), worldSize)
 

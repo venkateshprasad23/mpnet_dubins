@@ -83,7 +83,7 @@ if __name__=="__main__":
     costmap = np.load(osp.join(folder_loc,'costmaps','{}.npy'.format(idx)))
     traj = np.load(osp.join(folder_loc,'paths','{}.npy'.format(idx)))
 
-    start = traj[0]
+    start = traj[1]
     print("Initial start, before reshaping: ",start)
     print("Shape: ",start.shape)
     start = torch.tensor(start).float().reshape(1,-1)
@@ -96,7 +96,7 @@ if __name__=="__main__":
     print("Goal, after reshaping: ",goal)
     print("Shape: ",goal.shape)
 
-    obs = costmap[0]
+    obs = costmap[1]
     # print("Costmap, before reshaping: ",obs)
     print("Shape before for costmap: ",obs.shape)
     obs = torch.Tensor(obs).unsqueeze(0)

@@ -79,27 +79,35 @@ if __name__=="__main__":
         mpnet_base.mpNet.mlp.cuda()
         mpnet_base.mpNet.encoder.cuda()
 
-    idx = 15
+    idx = 1
     costmap = np.load(osp.join(folder_loc,'costmaps','{}.npy'.format(idx)))
     traj = np.load(osp.join(folder_loc,'paths','{}.npy'.format(idx)))
 
     start = traj[0]
     print("Initial start, before reshaping: ",start)
+    print("Shape: ",start.shape)
     start = torch.tensor(start).float().reshape(1,-1)
     print("Start, after reshaping: ",start)
+    print("Shape: ",start.shape)
     goal = traj[-1]
     print("Initial goal, before reshaping: ",goal)
+    print("Shape: ",goal.shape)
     goal = torch.tensor(goal).float().reshape(1,-1)
     print("Goal, after reshaping: ",goal)
+    print("Shape: ",goal.shape)
 
     obs = costmap[0]
-    print("Costmap, before reshaping: ",obs)
+    # print("Costmap, before reshaping: ",obs)
+    print("Shape before for costmap: ",obs.shape)
     obs = torch.Tensor(obs).unsqueeze(0)
-    print("Costmap, after reshaping: ",obs)
+    # print("Costmap, after reshaping: ",obs)
+    print("Shape after: ",obs.shape)
 
     network_input = torch.cat((start,goal), dim=1)
     print("Network Input: ",network_input)
+    print("Shape: ",network_input.shape)
     tobs, tInput = format_input(obs.unsqueeze(0), network_input)
+    print("Unsqueezed shape: ", tobs)
     temp = mpnet_base.mpNet(tInput, tobs).data.cpu()
     temp = unnormalize(temp.squeeze(), worldSize)
 

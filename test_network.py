@@ -89,6 +89,7 @@ if __name__=="__main__":
     goal = torch.tensor(goal).float().reshape(1,-1)
 
     obs = costmap[0]
+    obs = torch.Tensor(obs).unsqueeze(0)
 
     network_input = torch.cat((start,goal), dim=1)
     tobs, tInput = format_input(obs.unsqueeze(0), network_input)

@@ -84,14 +84,21 @@ if __name__=="__main__":
     traj = np.load(osp.join(folder_loc,'paths','{}.npy'.format(idx)))
 
     start = traj[0]
+    print("Initial start, before reshaping: ",start)
     start = torch.tensor(start).float().reshape(1,-1)
+    print("Start, after reshaping: ",start)
     goal = traj[-1]
+    print("Initial goal, before reshaping: ",goal)
     goal = torch.tensor(goal).float().reshape(1,-1)
+    print("Goal, after reshaping: ",goal)
 
     obs = costmap[0]
+    print("Costmap, before reshaping: ",obs)
     obs = torch.Tensor(obs).unsqueeze(0)
+    print("Costmap, after reshaping: ",obs)
 
     network_input = torch.cat((start,goal), dim=1)
+    print("Network Input: ",network_input)
     tobs, tInput = format_input(obs.unsqueeze(0), network_input)
     temp = mpnet_base.mpNet(tInput, tobs).data.cpu()
     temp = unnormalize(temp.squeeze(), worldSize)

@@ -91,7 +91,7 @@ if __name__=="__main__":
     obs = costmap[0]
 
     network_input = torch.cat((start,goal), dim=1)
-    tobs, tInput = format_input(obs, network_input)
+    tobs, tInput = format_input(obs.unsqueeze(0), network_input)
     temp = mpnet_base.mpNet(tInput, tobs).data.cpu()
     temp = unnormalize(temp.squeeze(), worldSize)
 

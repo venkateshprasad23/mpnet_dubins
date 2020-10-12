@@ -83,7 +83,7 @@ if __name__=="__main__":
     costmap = np.load(osp.join(folder_loc,'costmaps','{}.npy'.format(idx)))
     traj = np.load(osp.join(folder_loc,'paths','{}.npy'.format(idx)))
 
-    start = traj[1]
+    start = traj[0]
     print("Initial start, before reshaping: ",start)
     print("Shape: ",start.shape)
     start = torch.tensor(start).float().reshape(1,-1)
@@ -96,7 +96,7 @@ if __name__=="__main__":
     print("Goal, after reshaping: ",goal)
     print("Shape: ",goal.shape)
 
-    obs = costmap[1]
+    obs = costmap[0]
     # print("Costmap, before reshaping: ",obs)
     print("Shape before for costmap: ",obs.shape)
     obs = torch.Tensor(obs).unsqueeze(0)
@@ -107,9 +107,11 @@ if __name__=="__main__":
     print("Network Input: ",network_input)
     print("Shape: ",network_input.shape)
     tobs, tInput = format_input(obs.unsqueeze(0), network_input)
+    print("tInput: ",tInput)
     print("Unsqueezed shape: ", tobs.shape)
     temp = mpnet_base.mpNet(tInput, tobs).data.cpu()
     temp = unnormalize(temp.squeeze(), worldSize)
+    temp = start + temp
 
     print('Network Output : {}, trajectory value: {}'.format(temp, traj[:,:]))
 

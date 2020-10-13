@@ -10,7 +10,7 @@ array = []
 
 for row in myreader:
 	print(row[1])
-	print(row[2])
+	print(row[0])
 	if(row[1] == 'train_loss'):
 		continue
 	array.append(float(row[1]))

@@ -79,11 +79,11 @@ if __name__=="__main__":
         mpnet_base.mpNet.mlp.cuda()
         mpnet_base.mpNet.encoder.cuda()
 
-    idx = 32
+    idx = 1
     costmap = np.load(osp.join(folder_loc,'costmaps','{}.npy'.format(idx)))
     traj = np.load(osp.join(folder_loc,'paths','{}.npy'.format(idx)))
 
-    start = traj[0]
+    start = traj[1]
     print("Initial start, before reshaping: ",start)
     print("Shape: ",start.shape)
     start = torch.tensor(start).float().reshape(1,-1)
@@ -97,7 +97,7 @@ if __name__=="__main__":
     print("Shape: ",goal.shape)
 
     obs = np.ones((1, 1, 20, 20, 20))
-    obs[0,0,:,:,:] = costmap[0]
+    obs[0,0,:,:,:] = costmap[1]
     # obs = costmap[0]
     # print("Costmap, before reshaping: ",obs)
     # print("Shape before for costmap: ",obs.shape)

@@ -100,18 +100,19 @@ if __name__=="__main__":
     obs[0,0,:,:,:] = costmap[0]
     # obs = costmap[0]
     # print("Costmap, before reshaping: ",obs)
-    print("Shape before for costmap: ",obs.shape)
+    # print("Shape before for costmap: ",obs.shape)
     obs = torch.Tensor(obs)#.unsqueeze(0)
     # print("Costmap, after reshaping: ",obs)
-    print("Shape after: ",obs.shape)
+    # print("Shape after: ",obs.shape)
 
     network_input = torch.cat((start,goal), dim=1)
-    print("Network Input: ",network_input)
-    print("Shape: ",network_input.shape)
+    # print("Network Input: ",network_input)
+    # print("Shape: ",network_input.shape)
     tobs, tInput = format_input(obs, network_input)
     # print("tInput: ",tInput)
     # print("Unsqueezed shape: ", tobs.shape)
     temp = mpnet_base.mpNet(tInput, tobs).data.cpu()
+    print("Before normalization : ", temp)
     temp = unnormalize(temp.squeeze(), worldSize)
     # temp = start + temp
     # test_loss_i = mpnet_base.mpNet.loss(

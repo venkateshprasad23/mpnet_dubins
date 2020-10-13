@@ -9,12 +9,12 @@ array = []
 # array = np.array(array)
 
 for row in myreader:
-	print(row[1])
-	print(row[0])
+	# print(row[1])
+	# print(row[0])
 	if(row[1] == 'train_loss'):
 		continue
-	array.append(float(row[1]))
+	array.append(float(row[0]))
 # print(array)
-# plt.plot(array)
-# plt.savefig('loss.png')
+plt.plot(array)
+plt.savefig('test_loss.png')
     

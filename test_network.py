@@ -101,7 +101,7 @@ if __name__=="__main__":
     # obs = costmap[0]
     # print("Costmap, before reshaping: ",obs)
     print("Shape before for costmap: ",obs.shape)
-    # obs = torch.Tensor(obs).unsqueeze(0)
+    obs = torch.Tensor(obs)#.unsqueeze(0)
     # print("Costmap, after reshaping: ",obs)
     print("Shape after: ",obs.shape)
 

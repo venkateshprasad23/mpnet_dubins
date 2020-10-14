@@ -12,7 +12,7 @@ volume = 10
 saving_path_folder = '/root/my_workspace/data/modified_paths_retry/'
 saving_costmap_folder = '/root/my_workspace/data/modified_costmaps_retry/'
 
-mapping = np.load('map.npy')
+mapping = np.load('map_v2.npy')
 
 print("hello")
 

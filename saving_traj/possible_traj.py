@@ -96,9 +96,9 @@ def PossibleComb(points):
 
     # return possible_comb
 def get_costmap(points):
-    x = round(position[0],1)
-    y = round(position[1],1)
-    z = round(position[2],1)
+    x = round(points[0],1)
+    y = round(points[1],1)
+    z = round(points[2],1)
 
 
     # print((x,y,z))

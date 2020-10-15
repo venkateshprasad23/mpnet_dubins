@@ -146,7 +146,7 @@ class ThreedIterDataset(torch.utils.data.IterableDataset):
             # new_costmap = np.ones((120*2,120*2))*100
             # new_costmap[120-my:240-my,120-mx:240-mx] = costmap
             # Normalize and compress the image by 3 times
-            obs[i,0,:,:,:] = costmap[i]
+            obs[i,0,:,:,:] = costmap
             inputs[i, :] = np.concatenate((localtraj[i], goal))
             targets[i, :] = localtraj[i+1]
 

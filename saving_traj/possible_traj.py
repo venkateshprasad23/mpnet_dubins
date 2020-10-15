@@ -11,6 +11,7 @@ volume = 10
 
 saving_path_folder = '/root/my_workspace/data/modified_paths_retry/'
 saving_costmap_folder = '/root/my_workspace/data/modified_costmaps_retry/'
+ref_path_folder = '/root/my_workspace/data/ref_paths/'
 
 mapping = np.load('map_v2.npy')
 
@@ -60,7 +61,7 @@ def PossibleComb(points):
                 break
         possible_comb[i] = sorted(comb)
 
-    path_array = []
+    # path_array = []
     # costmap_array = []
 
     # print(get_points(points[0]))
@@ -71,13 +72,15 @@ def PossibleComb(points):
         if(len(possible_comb[gugu])>=3):
             print(possible_comb[gugu])   
             path_array = []
+            ref_array = []
             # costmap_array = []
             np.save(saving_costmap_folder + str(count) + '.npy',get_costmap(points[gugu]))
             for huhu in possible_comb[gugu]:
-                print(points[huhu])
+                # print(points[huhu])
                 # print(see_dist(get_points()))
                 path_array.append(points[huhu])
-
+                ref_array.append(points[huhu]-points[gugu])
+                print(points[huhu]-points[gugu])
                 
                 # costmap_array.append(get_costmap(points[huhu]))
             
@@ -87,9 +90,11 @@ def PossibleComb(points):
             # print(costmap_array)
             count = count+1;
             path_array = np.array(path_array)
+            ref_array = np.array(ref_array)
             # costmap_array = np.array(costmap_array)
 
-            np.save(saving_path_folder + str(count) + '.npy',path_array)
+            # np.save(saving_path_folder + str(count) + '.npy',path_array)
+            # np.save(ref_path_folder + str(count) + '.npy',ref_array)
             # np.save(saving_costmap_folder + str(count) + '.npy',get_costmap(points[gugu]))
         else:
             continue

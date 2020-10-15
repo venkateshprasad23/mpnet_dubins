@@ -76,11 +76,11 @@ def PossibleComb(points):
             # costmap_array = []
             np.save(saving_costmap_folder + str(count) + '.npy',get_costmap(points[gugu]))
             for huhu in possible_comb[gugu]:
-                print("Original Points: ",points[huhu])
+                # print("Original Points: ",points[huhu])
                 # print(see_dist(get_points()))
                 path_array.append(points[huhu])
                 ref_array.append(points[huhu]-points[gugu])
-                print("Referenced Points: ",points[huhu]-points[gugu])
+                # print("Referenced Points: ",points[huhu]-points[gugu])
                 
                 # costmap_array.append(get_costmap(points[huhu]))
             
@@ -93,9 +93,8 @@ def PossibleComb(points):
             ref_array = np.array(ref_array)
             # costmap_array = np.array(costmap_array)
 
-            # np.save(saving_path_folder + str(count) + '.npy',path_array)
-            # np.save(ref_path_folder + str(count) + '.npy',ref_array)
-            
+            np.save(saving_path_folder + str(count) + '.npy',path_array)
+            np.save(ref_path_folder + str(count) + '.npy',ref_array)
         else:
             continue
 

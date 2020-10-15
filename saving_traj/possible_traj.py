@@ -53,15 +53,15 @@ def PossibleComb(points):
                 comb.append(j+i+1)
             else:
                 break
-        # for j, pb in enumerate(reversed(points[:i])):
-        #     if check_dist(p1,pb):
-        #         comb.append(i-j-1)
-        #     else:
-        #         break
+        for j, pb in enumerate(reversed(points[:i])):
+            if check_dist(p1,pb):
+                comb.append(i-j-1)
+            else:
+                break
         possible_comb[i] = sorted(comb)
 
     path_array = []
-    costmap_array = []
+    # costmap_array = []
 
     # print(get_points(points[0]))
 
@@ -71,15 +71,15 @@ def PossibleComb(points):
         if(len(possible_comb[gugu])>=3):
             print(possible_comb[gugu])   
             path_array = []
-            costmap_array = []
-
+            # costmap_array = []
+            np.save(saving_costmap_folder + str(count) + '.npy',get_costmap(points[gugu]))
             for huhu in possible_comb[gugu]:
                 print(points[huhu])
                 # print(see_dist(get_points()))
                 path_array.append(points[huhu])
 
                 
-                costmap_array.append(get_costmap(points[huhu]))
+                # costmap_array.append(get_costmap(points[huhu]))
             
             # print(path_array)
 
@@ -87,28 +87,25 @@ def PossibleComb(points):
             # print(costmap_array)
             count = count+1;
             path_array = np.array(path_array)
-            costmap_array = np.array(costmap_array)
+            # costmap_array = np.array(costmap_array)
 
             np.save(saving_path_folder + str(count) + '.npy',path_array)
-            np.save(saving_costmap_folder + str(count) + '.npy',costmap_array)
+            # np.save(saving_costmap_folder + str(count) + '.npy',get_costmap(points[gugu]))
         else:
             continue
 
     # return possible_comb
 def get_costmap(points):
-    x,y,z = points[0],points[1],points[2]
-    
-    index_x = (x + map_bounds)/(0.2)
-    index_x = index_x + 10
-    index_x = int(index_x)
+    x = round(position[0],1)
+    y = round(position[1],1)
+    z = round(position[2],1)
 
-    index_y = (y + map_bounds)/(0.2)
-    index_y = index_x + 10
-    index_y = int(index_x)
 
-    index_z = (z + map_bounds)/(0.2)
-    index_z = index_x + 10
-    index_z = int(index_x)
+    # print((x,y,z))
+
+    index_x = round((x+map_bounds)/0.2)
+    index_y = round((y+map_bounds)/0.2)
+    index_z = round((z+map_bounds)/0.2)
 
     costmap = mapping[index_x-volume:index_x+volume,index_y-volume:index_y+volume,index_z-volume:index_z+volume]
 

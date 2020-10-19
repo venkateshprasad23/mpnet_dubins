@@ -26,27 +26,27 @@ class Encoder(nn.Module):
         super(Encoder, self).__init__()
         self.encoder = nn.Sequential(
             nn.Conv3d(in_channels=1,
-                      out_channels=8,
-                      kernel_size=[3, 3, 3],
-                      stride=[1, 1, 1]),
+                      out_channels=32,
+                      kernel_size=[5, 5, 5],
+                      stride=[2, 2, 2]),
             # nn.BatchNorm2d(8),
-            nn.MaxPool3d(kernel_size=2),
+            # nn.MaxPool3d(kernel_size=2),
             nn.PReLU(),
             # nn.ReLU(),
-            nn.Conv3d(in_channels=8,
-                      out_channels=16,
+            nn.Conv3d(in_channels=32,
+                      out_channels=32,
                       kernel_size=[3, 3, 3],
                       stride=[1, 1, 1]),
             # nn.BatchNorm2d(16),
             nn.MaxPool3d(kernel_size=2),
             nn.PReLU(),
             # nn.ReLU(),
-            nn.Conv3d(in_channels=16,
-                      out_channels=32,
-                      kernel_size=[3, 3, 3],
-                      stride=[1, 1, 1]),
+            # nn.Conv3d(in_channels=16,
+            #           out_channels=32,
+            #           kernel_size=[3, 3, 3],
+            #           stride=[1, 1, 1]),
             # nn.BatchNorm2d(32),
-            nn.PReLU(),
+            # nn.PReLU(),
         )
         # self.encoder.apply(weights_init)
         # For accepting different input shapes
@@ -55,13 +55,13 @@ class Encoder(nn.Module):
         for n in x.size()[1:]:
             first_fc_in_features *= n
         self.head = nn.Sequential(
-            nn.Linear(first_fc_in_features + state_size + 1, 256),
+            nn.Linear(first_fc_in_features + state_size + 1, output_size),
             nn.PReLU(),
             nn.Dropout(),
-            nn.Linear(256, 256),
-            nn.PReLU(),
-            nn.Dropout(),
-            nn.Linear(256, output_size),
+            # nn.Linear(256, 256),
+            # nn.PReLU(),
+            # nn.Dropout(),
+            # nn.Linear(128, output_size),
         )
         # self.head.apply(weights_init)
 

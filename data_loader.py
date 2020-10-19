@@ -18,31 +18,16 @@ import torch.utils.data
 #     return (z + np.pi) % (2 * np.pi) - np.pi
 
 
-# def get_points(point):
-#     '''
-#     Converts world co-ordinates to pixel co-ordinates
-#     :param point: The desired point to be converted
-#     :param x0: The x co-ordinate of the image origin
-#     :param y0: The y co-ordinate of the image origin
-#     :param resl: The resolution of the costmap
-#     :returns [mx,my] index corresponding to the image 
-#     '''
-#     j=0
-#     z = str(point[0])
-#     lines = z.splitlines()
-#     for j in range(3):
-#         h = lines[j]       
-
-#         if(j==0):
-#             u_x = float(h[4:len(h)])
-
-#         elif(j==1):
-#             u_y = float(h[4:len(h)])
-
-#         elif(j==2):
-#             u_z = float(h[4:len(h)])
-
-#     return u_x, u_y, u_z
+def CenterRobot(costmap, pixel_ind):
+    costmap_data = costmap.get_data()
+    costmap_dim = costmap_data.shape
+    full_obs = np.ones((costmap_dim[0] * 2, costmap_dim[1] * 2))
+    x_0, y_0 = costmap_dim[1] - pixel_ind[1], costmap_dim[0] - pixel_ind[0]
+    full_obs[x_0:x_0 + costmap_dim[1], y_0:y_0 +
+             costmap_dim[0]] = costmap_data / 254
+    full_obs = full_obs[::3, ::3]
+    full_obs = torch.Tensor(full_obs).unsqueeze(0)
+    return full_obs
 
 class ThreedDataset(torch.utils.data.Dataset):
     def __init__(self, folder_loc, numSamples):
@@ -50,7 +35,7 @@ class ThreedDataset(torch.utils.data.Dataset):
         self.numSamples = numSamples
         self.inputs = np.zeros((numSamples, 6))
         self.targets = np.zeros((numSamples, 3))
-        self.obs = np.zeros((numSamples, 1, 20, 20, 20))
+        self.obs = np.zeros((numSamples, 1, 40, 40, 40))
         i = 0
         done = False
 
@@ -125,7 +110,7 @@ class ThreedIterDataset(torch.utils.data.IterableDataset):
         # localtraj[:,:2] = localtraj[:,:2] - np.array([msg.info.origin.position.x, msg.info.origin.position.y])
         samples = traj.shape[0] - 1
 
-        obs = np.ones((samples, 1, 20, 20, 20))
+        obs = np.ones((samples, 1, 40, 40, 40))
         inputs = np.zeros((samples, 6))
         targets = np.zeros((samples, 3))
         # j = 0
@@ -134,19 +119,19 @@ class ThreedIterDataset(torch.utils.data.IterableDataset):
         # for t in traj:
         #     t[2] = normalize_angle(t[2])
         goal = localtraj[-1]
-
+        res = 0.2
         # goal = world_to_voxel(goal)
 
-        for i in range(samples):
-
-            # mx, my = world_to_pixel(point, x0, y0, resl)
+        # for i in range(samples):
+        for i, point in enumerate(traj[:-1]):
+            mx, my, mz = point[0]/res, point[1]/res, point[2]/res,
             # if 0>mx or mx>120 or 0>my or my>120:
             #     print(mx, my, idx)
             #     return {'obs': [], 'inputs': [], 'targets': []}
-            # new_costmap = np.ones((120*2,120*2))*100
-            # new_costmap[120-my:240-my,120-mx:240-mx] = costmap
+            new_costmap = np.ones((40,40,40))
+            new_costmap[10-mx:30-mx,10-my:30-my,10-mz:30-mz] = costmap
             # Normalize and compress the image by 3 times
-            obs[i,0,:,:,:] = costmap
+            obs[i,0,:,:,:] = new_costmap
             inputs[i, :] = np.concatenate((localtraj[i], goal))
             targets[i, :] = localtraj[i+1]
 

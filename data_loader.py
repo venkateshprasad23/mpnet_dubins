@@ -124,7 +124,7 @@ class ThreedIterDataset(torch.utils.data.IterableDataset):
 
         # for i in range(samples):
         for i, point in enumerate(traj[:-1]):
-            mx, my, mz = point[0]/res, point[1]/res, point[2]/res,
+            mx, my, mz = round(point[0]/res), round(point[1]/res), round(point[2]/res),
             # if 0>mx or mx>120 or 0>my or my>120:
             #     print(mx, my, idx)
             #     return {'obs': [], 'inputs': [], 'targets': []}

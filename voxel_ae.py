@@ -48,7 +48,7 @@ class Encoder(nn.Module):
             # nn.BatchNorm2d(32),
             # nn.PReLU(),
         )
-        self.encoder.apply(weights_init)
+        # self.encoder.apply(weights_init)
         # For accepting different input shapes
         x = self.encoder(torch.autograd.Variable(torch.rand([1] + input_size)))
         first_fc_in_features = 1
@@ -79,7 +79,7 @@ class Encoder(nn.Module):
 
     
     def forward(self, obs, state):
-        obs = self.encoder(obs).half()
+        obs = self.encoder(obs)
         x = obs.view(obs.size(0), -1)
         relative_target = state[:, 3:5] - state[:, :2]
         input_state = torch.cat(
@@ -91,5 +91,5 @@ class Encoder(nn.Module):
             dim=1,
         )
         x = torch.cat((x, input_state), dim=1)
-        x = self.head(x).half()
+        x = self.head(x)
         return x

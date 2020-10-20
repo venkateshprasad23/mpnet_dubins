@@ -21,8 +21,8 @@ def train(args):
         'encoderOutputDim': 128,
         # 'worldSize': [27, 27, np.pi],
         'worldSize' : [2, 2, 2],
-        'AE': voxelNet.half(),
-        'MLP': MLP.half(),
+        'AE': voxelNet,
+        'MLP': MLP,
         'modelPath': args.file,
     }
     

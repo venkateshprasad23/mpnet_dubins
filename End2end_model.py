@@ -75,7 +75,7 @@ class End2EndMPNet(nn.Module):
         : param x : input to mlp
         """
         c = self.encoder(obs,x)#.half()
-        import pdb;pdb.set_trace()
+        # import pdb;pdb.set_trace()
         # c = c(obs, x)
         # out = self.mlp.half()
         return self.mlp(c)
@@ -134,7 +134,7 @@ class End2EndMPNet(nn.Module):
         """
         with torch.autograd.set_detect_anomaly(True):
             network_output = self.__call__(x, obs)
-            import pdb;pdb.set_trace()
+            # import pdb;pdb.set_trace()
             self.zero_grad()
             # l1_loss = self.lambda1 * torch.norm(final_param, 1)
             loss = self.loss(network_output, y)

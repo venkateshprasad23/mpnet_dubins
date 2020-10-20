@@ -104,7 +104,7 @@ class End2EndMPNet(nn.Module):
         #     return self.mse(pred, truth)
         # NOTE: This cost function is designed for r2d cars and need to change to
         # be compatible with other methods
-        loss = (pred-truth)
+        loss = (pred-truth)**2
         return loss
 
     @torch.jit.ignore

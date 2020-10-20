@@ -105,12 +105,6 @@ class End2EndMPNet(nn.Module):
         # NOTE: This cost function is designed for r2d cars and need to change to
         # be compatible with other methods
         loss = (pred-truth)
-        try:
-            loss[:, 0] = loss[:, 0].clone()**2
-            loss[:, 1] = loss[:, 1].clone()**2
-            loss[:, 2] = normalize_cost(loss[:, 2].clone())**2
-        except IndexError:
-            import pdb;pdb.set_trace()
         return loss
 
     @torch.jit.ignore

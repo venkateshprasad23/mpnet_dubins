@@ -9,11 +9,11 @@ from torch.nn.utils import clip_grad_norm_
 get_numpy = lambda x: x.data.cpu().numpy()
 
 
-def normalize_cost(z):
-    """
-    A function to wrap around -1 and 1
-    """
-    return (z + 1) % 2 - 1
+# def normalize_cost(z):
+#     """
+#     A function to wrap around -1 and 1
+#     """
+#     return (z + 1) % 2 - 1
 
 class End2EndMPNet(nn.Module):
     """ A python class defining the components of MPnet"""
@@ -75,6 +75,7 @@ class End2EndMPNet(nn.Module):
         : param x : input to mlp
         """
         c = self.encoder(obs,x)#.half()
+        import pdb;pdb.set_trace()
         # c = c(obs, x)
         # out = self.mlp.half()
         return self.mlp(c)

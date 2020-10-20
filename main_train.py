@@ -20,7 +20,7 @@ def train(args):
         'encoderInputDim': [1, 40, 40, 40],
         'encoderOutputDim': 128,
         # 'worldSize': [27, 27, np.pi],
-        'worldSize' : [2, 2, 2],
+        'worldSize' : [1.73, 1.73, 1.73],
         'AE': voxelNet,
         'MLP': MLP,
         'modelPath': args.file,

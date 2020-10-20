@@ -48,7 +48,7 @@ def load_seed(fname):
 def normalize(x, bound, time_flag=False):
     # normalize to -1 ~ 1  (bound can be a tensor)
     #return x
-    bound = torch.tensor(bound)
+    bound = torch.HalfTensor(bound)
     if len(x[0]) != len(bound):
         x[..., :2] = (x[..., :2]/bound[:2])*2 - 1
         x[..., 2] = x[..., 2]/bound[2]
@@ -65,7 +65,7 @@ def unnormalize(x, bound, time_flag=False):
     # x only one dim
     #return x
     time_0 = time.time()
-    bound = torch.tensor(bound)
+    bound = torch.HalfTensor(bound)
     if len(x) != len(bound):
         # then the proceding is obstacle
         # don't normalize obstacles

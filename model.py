@@ -58,5 +58,5 @@ class MLP(nn.Module):
         # self.fc.apply(weights_init)
 
     def forward(self, x):
-        out = self.fc(x).half()
+        out = self.fc(x)
         return out

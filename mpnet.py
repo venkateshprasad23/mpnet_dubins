@@ -117,12 +117,12 @@ class MPnetBase():
             bi = torch.tensor(inputs,dtype=torch.float16)
             # bi = bi.half()
         else:
-            bi = inputs.float()
+            bi = inputs.half()
         if isinstance(obs, np.ndarray):
             bobs = torch.tensor(obs,dtype=torch.float16)
             # bobs = bobs.half()
         else:
-            bobs = obs.float()
+            bobs = obs.half()
 
         # Normalize observations
         # normObsVoxel = torchvision.transforms.Normalize([0.5], [1])
@@ -141,7 +141,7 @@ class MPnetBase():
             bt = torch.tensor(targets,dtype=torch.float16)
             # bt = bt.half()
         else:
-            bt = targets.float()
+            bt = targets.half()
         bt = self.normalize(bt, self.worldSize)
         bt = to_var(bt)
         return bobs, bi, bt

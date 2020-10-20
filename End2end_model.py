@@ -43,8 +43,8 @@ class End2EndMPNet(nn.Module):
         : param MLP :
         """
         super(End2EndMPNet, self).__init__()
-        self.encoder = CAE.Encoder(AE_output_size, state_size, AE_input_size)
-        self.mlp = MLP(mlp_input_size, 3)
+        self.encoder = CAE.Encoder(AE_output_size, state_size, AE_input_size).half()
+        self.mlp = MLP(mlp_input_size, 3).half()
         self.mse = nn.MSELoss()
         self.set_opt(torch.optim.Adam, lr=3e-4)
         self.lambda1 = 0.1

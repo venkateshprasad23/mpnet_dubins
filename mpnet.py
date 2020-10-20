@@ -114,15 +114,15 @@ class MPnetBase():
         Formats the input data that needed to be fed into the network
         """
         if isinstance(inputs, np.ndarray):
-            bi = torch.tensor(inputs,dtype=torch.float16)
+            bi = torch.Tensor(inputs)
             # bi = bi.half()
         else:
-            bi = inputs.half()
+            bi = inputs.float()
         if isinstance(obs, np.ndarray):
-            bobs = torch.tensor(obs,dtype=torch.float16)
+            bobs = torch.Tensor(obs)
             # bobs = bobs.half()
         else:
-            bobs = obs.half()
+            bobs = obs.float()
 
         # Normalize observations
         # normObsVoxel = torchvision.transforms.Normalize([0.5], [1])
@@ -138,10 +138,10 @@ class MPnetBase():
         bobs, bi = self.format_input(obs, inputs)
         # Format targets
         if isinstance(targets, np.ndarray):
-            bt = torch.tensor(targets,dtype=torch.float16)
+            bt = torch.Tensor(targets)
             # bt = bt.half()
         else:
-            bt = targets.half()
+            bt = targets.float()
         bt = self.normalize(bt, self.worldSize)
         bt = to_var(bt)
         return bobs, bi, bt

@@ -79,7 +79,7 @@ class Encoder(nn.Module):
 
     
     def forward(self, obs, state):
-        obs = self.encoder(obs)
+        obs = self.encoder(obs).half()
         x = obs.view(obs.size(0), -1)
         relative_target = state[:, 3:5] - state[:, :2]
         input_state = torch.cat(
@@ -91,5 +91,5 @@ class Encoder(nn.Module):
             dim=1,
         )
         x = torch.cat((x, input_state), dim=1)
-        x = self.head(x)
+        x = self.head(x).half()
         return x

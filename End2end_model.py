@@ -74,10 +74,10 @@ class End2EndMPNet(nn.Module):
         : param obs : input to encoder
         : param x : input to mlp
         """
-        c = self.encoder.half()
-        c = c(obs, x)
-        out = self.mlp.half()
-        return out(c)
+        c = self.encoder(obs,x)#.half()
+        # c = c(obs, x)
+        # out = self.mlp.half()
+        return self.mlp(c)
 
     @torch.jit.ignore
     def get_path_length(self, startNode, endNode):

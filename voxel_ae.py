@@ -63,7 +63,7 @@ class Encoder(nn.Module):
             nn.Dropout(),
             # nn.Linear(128, output_size),
         )
-        self.head.apply(weights_init)
+        # self.head.apply(weights_init)
 
     @torch.jit.ignore
     def get_contractive_loss(self):

@@ -48,7 +48,7 @@ class Encoder(nn.Module):
             # nn.BatchNorm2d(32),
             # nn.PReLU(),
         )
-        # self.encoder.apply(weights_init)
+        self.encoder.apply(weights_init)
         # For accepting different input shapes
         x = self.encoder(torch.autograd.Variable(torch.rand([1] + input_size)))
         first_fc_in_features = 1
@@ -63,7 +63,7 @@ class Encoder(nn.Module):
             nn.Dropout(),
             # nn.Linear(128, output_size),
         )
-        # self.head.apply(weights_init)
+        self.head.apply(weights_init)
 
     @torch.jit.ignore
     def get_contractive_loss(self):

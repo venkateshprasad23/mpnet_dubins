@@ -114,11 +114,11 @@ class MPnetBase():
         Formats the input data that needed to be fed into the network
         """
         if isinstance(inputs, np.ndarray):
-            bi = torch.Tensor(inputs)
+            bi = torch.HalfTensor(inputs)
         else:
             bi = inputs.float()
         if isinstance(obs, np.ndarray):
-            bobs = torch.Tensor(obs)
+            bobs = torch.HalfTensor(obs)
         else:
             bobs = obs.float()
 
@@ -136,7 +136,7 @@ class MPnetBase():
         bobs, bi = self.format_input(obs, inputs)
         # Format targets
         if isinstance(targets, np.ndarray):
-            bt = torch.Tensor(targets)
+            bt = torch.HalfTensor(targets)
         else:
             bt = targets.float()
         bt = self.normalize(bt, self.worldSize)

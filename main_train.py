@@ -29,7 +29,7 @@ def train(args):
     trainNetwork = MPnetTrain(
         load_dataset=None,
         n_epochs=300,
-        batchSize=64,
+        batchSize=128,
         opt=torch.optim.Adam,
         learning_rate=3e-4,
         **network_parameters

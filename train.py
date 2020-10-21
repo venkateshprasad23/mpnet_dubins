@@ -35,7 +35,7 @@ class MPnetTrain(MPnetBase):
     def __init__(self,
                  load_dataset,
                  n_epochs=1000,
-                 batchSize=256,
+                 batchSize=32,
                  learning_rate=1e-2,
                  opt=None,
                  **kwargs):

@@ -29,14 +29,14 @@ def train(args):
     trainNetwork = MPnetTrain(
         load_dataset=None,
         n_epochs=300,
-        batchSize=32,
+        batchSize=256,
         opt=torch.optim.Adam,
         learning_rate=3e-4,
         **network_parameters
     )
     # trainNetwork.set_model_train_epoch(999)
 
-    trainNetwork.train(numEnvsTrain=90000,
+    trainNetwork.train(numEnvsTrain=40000,
                        numEnvsTest=10000,
                        numPaths=1,
                        trainDataPath='/root/my_workspace/data/main_train/train/',

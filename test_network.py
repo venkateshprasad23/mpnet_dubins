@@ -15,7 +15,7 @@ from data_loader import ThreedDataset
 
 from misc import load_net_state, load_opt_state, save_state, to_var, load_seed
 
-worldSize = [2, 2, 2]
+worldSize = [1.73, 1.73, 1.73]
 
 get_numpy = lambda x: x.data.cpu().numpy()
 
@@ -55,7 +55,7 @@ def format_data(obs, inputs, targets):
 
 
 if __name__=="__main__":
-    modelPath = '/root/my_workspace/data/trained_models/mpnet_epoch_299.pkl'
+    modelPath = '/root/my_workspace/data/trained_models/mpnet_epoch_69.pkl'
     testDataPath='/root/my_workspace/data/test_network/'
     folder_loc = '/root/my_workspace/data/main_train/train/'
     # saveTorchScriptModel = '/root/data/grid_world_2_0_06/trained_models/mpnet_model_289.pt'
@@ -63,9 +63,9 @@ if __name__=="__main__":
     network_param = {
         "normalize": normalize,
         "denormalize": unnormalize,
-        "encoderInputDim": [1, 20, 20, 20],
+        "encoderInputDim": [1, 40, 40, 40],
         "encoderOutputDim": 128,
-        "worldSize": [2, 2, 2],
+        "worldSize": [1.73, 1.73, 1.73],
         "AE": voxelNet,
         "MLP": model.MLP,
         "modelPath": modelPath}
@@ -83,7 +83,7 @@ if __name__=="__main__":
     costmap = np.load(osp.join(folder_loc,'costmaps','{}.npy'.format(idx)))
     traj = np.load(osp.join(folder_loc,'paths','{}.npy'.format(idx)))
 
-    start = traj[1]
+    start = traj[0]
     print("Initial start, before reshaping: ",start)
     print("Shape: ",start.shape)
     start = torch.tensor(start).float().reshape(1,-1)
@@ -96,8 +96,12 @@ if __name__=="__main__":
     print("Goal, after reshaping: ",goal)
     print("Shape: ",goal.shape)
 
-    obs = np.ones((1, 1, 20, 20, 20))
-    obs[0,0,:,:,:] = costmap[1]
+    mx, my, mz = 0, 0, 0#round(point[0]/res), round(point[1]/res), round(point[2]/res)
+    new_costmap = np.ones((40,40,40))
+    new_costmap[10-mx:30-mx,10-my:30-my,10-mz:30-mz] = costmap
+
+    obs = np.ones((1, 1, 40, 40, 40))
+    obs[0,0,:,:,:] = new_costmap
     # obs = costmap[0]
     # print("Costmap, before reshaping: ",obs)
     # print("Shape before for costmap: ",obs.shape)

@@ -11,7 +11,7 @@ from misc import normalize, unnormalize
 from train import MPnetTrain
 
 torch.set_default_tensor_type(torch.cuda.HalfTensor)
-torch.multiprocessing.set_start_method('spawn')
+torch.multiprocessing.set_start_method('spawn',force=True)
 
 
 def train(args):

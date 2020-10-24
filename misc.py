@@ -3,6 +3,7 @@ from torch.autograd import Variable
 import copy
 
 import time
+torch.set_default_tensor_type(torch.cuda.HalfTensor)
 
 def to_var(x, volatile=False):
     if torch.cuda.is_available():

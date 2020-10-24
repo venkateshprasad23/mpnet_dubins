@@ -4,6 +4,7 @@ import torch.nn as nn
 from torch.autograd import Variable
 from torch.nn.utils import clip_grad_norm_, clip_grad_value_
 
+torch.set_default_tensor_type(torch.cuda.HalfTensor)
 
 # custom weights initialization called on netG and netD
 def weights_init(m):

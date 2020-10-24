@@ -10,6 +10,8 @@ import model as model
 from misc import normalize, unnormalize
 from train import MPnetTrain
 
+torch.set_default_tensor_type(torch.cuda.HalfTensor)
+
 
 def train(args):
     denormalize = unnormalize

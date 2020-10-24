@@ -9,6 +9,8 @@ import torch
 from torch.utils.data import DataLoader
 import torch.utils.data
 
+torch.set_default_tensor_type(torch.cuda.HalfTensor)
+
 # import rosbag
 
 # def normalize_angle(z):

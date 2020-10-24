@@ -13,6 +13,8 @@ import csv
 from End2end_model import End2EndMPNet
 from misc import load_net_state, load_opt_state, save_state, to_var, load_seed
 
+torch.set_default_tensor_type(torch.cuda.HalfTensor)
+
 get_numpy = lambda x: x.data.cpu().numpy()
 
 def generateModelPath():

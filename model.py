@@ -4,6 +4,8 @@ import torchvision.models as models
 from torch.nn.utils.rnn import pack_padded_sequence
 from torch.autograd import Variable
 
+torch.set_default_tensor_type(torch.cuda.HalfTensor)
+
 
 def weights_init(m):
     classname = m.__class__.__name__

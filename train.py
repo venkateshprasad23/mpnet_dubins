@@ -12,6 +12,8 @@ from torch.utils.data import DataLoader
 from data_loader import ThreedDataset
 from mpnet import MPnetBase
 
+torch.set_default_tensor_type(torch.cuda.HalfTensor)
+
 # TODO: Change the code to center the robot
 def CenterRobot(costmap, pixel_ind):
     costmap_data = costmap.get_data()

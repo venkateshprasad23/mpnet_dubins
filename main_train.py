@@ -11,7 +11,7 @@ from misc import normalize, unnormalize
 from train import MPnetTrain
 
 # torch.set_default_tensor_type(torch.cuda.HalfTensor)
-torch.multiprocessing.set_start_method('spawn',force=True)
+# torch.multiprocessing.set_start_method('spawn',force=True)
 
 
 def train(args):
@@ -32,7 +32,7 @@ def train(args):
     trainNetwork = MPnetTrain(
         load_dataset=None,
         n_epochs=300,
-        batchSize=256,
+        batchSize=8,
         opt=torch.optim.Adam,
         learning_rate=3e-4,
         **network_parameters

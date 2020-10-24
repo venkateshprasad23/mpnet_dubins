@@ -4,6 +4,7 @@ import copy
 
 import time
 torch.set_default_tensor_type(torch.cuda.HalfTensor)
+torch.multiprocessing.set_start_method('spawn')
 
 def to_var(x, volatile=False):
     if torch.cuda.is_available():

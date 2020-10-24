@@ -10,6 +10,7 @@ from torch.utils.data import DataLoader
 import torch.utils.data
 
 torch.set_default_tensor_type(torch.cuda.HalfTensor)
+torch.multiprocessing.set_start_method('spawn')
 
 # import rosbag
 

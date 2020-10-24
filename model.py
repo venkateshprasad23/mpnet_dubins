@@ -5,6 +5,7 @@ from torch.nn.utils.rnn import pack_padded_sequence
 from torch.autograd import Variable
 
 torch.set_default_tensor_type(torch.cuda.HalfTensor)
+torch.multiprocessing.set_start_method('spawn')
 
 
 def weights_init(m):

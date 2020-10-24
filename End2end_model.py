@@ -9,6 +9,7 @@ from torch.nn.utils import clip_grad_norm_
 get_numpy = lambda x: x.data.cpu().numpy()
 
 torch.set_default_tensor_type(torch.cuda.HalfTensor)
+torch.multiprocessing.set_start_method('spawn')
 
 
 # def normalize_cost(z):

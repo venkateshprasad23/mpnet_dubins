@@ -80,7 +80,7 @@ class MPnetTrain(MPnetBase):
         #     obs_test, inputs_test, targets_test)
 
         train_ds = ThreedDataset(trainDataPath, numEnvsTrain*numPaths)
-        train_dl = DataLoader(train_ds, shuffle=True, num_workers = 3, batch_size = self.batchSize, drop_last=True)
+        train_dl = DataLoader(train_ds, shuffle=True, num_workers = 2, batch_size = self.batchSize, drop_last=True)
 
         test_ds = ThreedDataset(testDataPath, numEnvsTest*numPaths)
         testObs, testInput, testTarget = test_ds[:int(numEnvsTest*numPaths/2)]

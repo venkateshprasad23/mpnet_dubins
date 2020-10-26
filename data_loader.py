@@ -47,7 +47,7 @@ class ThreedDataset(torch.utils.data.Dataset):
                 seeds.append(s)
 
         DataSet = ThreedIterDataset(folder_loc, seeds)
-        Data = DataLoader(DataSet, num_workers=2)
+        Data = DataLoader(DataSet, num_workers=5)
 
         # if not seeds:
         #     raise ValueError("{} - Not a valid folder".format(trajFolder))

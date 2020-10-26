@@ -10,6 +10,8 @@ import model as model
 from misc import normalize, unnormalize
 from train import MPnetTrain
 
+torch.cuda.empty_cache()
+
 # torch.set_default_tensor_type(torch.HalfTensor)
 # torch.multiprocessing.set_start_method('spawn',force=True)
 

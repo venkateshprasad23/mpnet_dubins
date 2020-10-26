@@ -49,7 +49,8 @@ class Encoder(nn.Module):
         )
         # self.encoder.apply(weights_init)
         # For accepting different input shapes
-        x = self.encoder(torch.autograd.Variable(torch.rand([1] + input_size)))
+        x = self.encoder(torch.autograd.Variable(torch.rand(input_size)))
+        # x = self.encoder(torch.autograd.Variable(torch.rand([1] + input_size)))
         first_fc_in_features = 1
         for n in x.size()[1:]:
             first_fc_in_features *= n

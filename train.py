@@ -24,6 +24,16 @@ def CenterRobot(costmap, pixel_ind):
     full_obs = torch.Tensor(full_obs).unsqueeze(0)
     return full_obs
 
+def debug_memory():
+    import collections, gc, resource
+    print('maxrss = {}'.format(
+        resource.getrusage(resource.RUSAGE_SELF).ru_maxrss))
+    tensors = collections.Counter((str(o.device), o.dtype, tuple(o.shape))
+                                  for o in gc.get_objects()
+                                  if torch.is_tensor(o))
+    for line in sorted(tensors.items()):
+        print('{}\t{}'.format(*line))
+
 get_numpy = lambda x: x.data.cpu().numpy()
 
 
@@ -138,6 +148,8 @@ class MPnetTrain(MPnetBase):
                 'test_loss': self.test_loss,
                 'train_loss': self.train_loss
             }
+
+            debug_memory()
 
             # Record training and testing loss
             with open(osp.join(self.modelPath, 'progress.csv'), 'w') as f:

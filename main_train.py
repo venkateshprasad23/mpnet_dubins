@@ -15,7 +15,6 @@ torch.cuda.empty_cache()
 # torch.set_default_tensor_type(torch.HalfTensor)
 # torch.multiprocessing.set_start_method('spawn',force=True)
 
-
 def train(args):
     denormalize = unnormalize
     MLP = model.MLP
@@ -34,7 +33,7 @@ def train(args):
     trainNetwork = MPnetTrain(
         load_dataset=None,
         n_epochs=300,
-        batchSize=256,
+        batchSize=16,
         opt=torch.optim.Adam,
         learning_rate=3e-4,
         **network_parameters

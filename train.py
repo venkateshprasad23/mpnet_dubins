@@ -149,7 +149,7 @@ class MPnetTrain(MPnetBase):
                 'train_loss': self.train_loss
             }
 
-            debug_memory()
+            # debug_memory()
 
             # Record training and testing loss
             with open(osp.join(self.modelPath, 'progress.csv'), 'w') as f:

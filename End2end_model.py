@@ -8,9 +8,6 @@ from torch.nn.utils import clip_grad_norm_
 
 get_numpy = lambda x: x.data.cpu().numpy()
 
-
-
-
 # def normalize_cost(z):
 #     """
 #     A function to wrap around -1 and 1

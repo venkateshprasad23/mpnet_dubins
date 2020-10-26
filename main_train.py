@@ -51,7 +51,7 @@ def train(args):
     # trainNetwork.set_model_train_epoch(999)
     debug_memory()
     trainNetwork.train(numEnvsTrain=90000,
-                       numEnvsTest=10000,
+                       numEnvsTest=7500,
                        numPaths=1,
                        trainDataPath='/root/my_workspace/data/main_train/train/',
                        testDataPath='/root/my_workspace/data/main_train/test/')

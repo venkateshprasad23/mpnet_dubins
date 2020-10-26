@@ -22,7 +22,7 @@ def debug_memory():
     for line in sorted(tensors.items()):
         print('{}\t{}'.format(*line))
 
-# torch.set_default_tensor_type(torch.HalfTensor)
+torch.set_default_tensor_type(torch.HalfTensor)
 # torch.multiprocessing.set_start_method('spawn',force=True)
 
 def train(args):

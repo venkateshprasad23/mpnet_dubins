@@ -55,13 +55,13 @@ class Encoder(nn.Module):
         for n in x.size()[1:]:
             first_fc_in_features *= n
         self.head = nn.Sequential(
-            nn.Linear(first_fc_in_features, 128),
-            # nn.Linear(first_fc_in_features + state_size, 128),
+            # nn.Linear(first_fc_in_features, 128),
+            nn.Linear(first_fc_in_features + state_size, 128),
             nn.PReLU(),
             nn.Dropout(),
-            # nn.Linear(128, output_size),
-            # nn.PReLU(),
-            # nn.Dropout(),
+            nn.Linear(128, output_size),
+            nn.PReLU(),
+            nn.Dropout(),
             # nn.Linear(128, output_size),
         )
         # self.head.apply(weights_init)

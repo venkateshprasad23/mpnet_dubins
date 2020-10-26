@@ -22,7 +22,7 @@ def debug_memory():
     for line in sorted(tensors.items()):
         print('{}\t{}'.format(*line))
 
-# torch.set_default_tensor_type(torch.HalfTensor)
+torch.set_default_tensor_type(torch.HalfTensor)
 # torch.multiprocessing.set_start_method('spawn',force=True)
 
 def train(args):
@@ -50,8 +50,8 @@ def train(args):
     )
     # trainNetwork.set_model_train_epoch(999)
     debug_memory()
-    trainNetwork.train(numEnvsTrain=90000,
-                       numEnvsTest=10000,
+    trainNetwork.train(numEnvsTrain=150000,
+                       numEnvsTest=5000,
                        numPaths=1,
                        trainDataPath='/root/my_workspace/data/main_train/train/',
                        testDataPath='/root/my_workspace/data/main_train/test/')

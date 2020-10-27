@@ -83,7 +83,7 @@ class ThreedIterDataset(torch.utils.data.IterableDataset):
         our_dict = dict()
         count = 0
 
-        for entry in os.listdir(folder_loc):
+        for entry in os.listdir(osp.join(self.folder_loc,'paths')):
             if '.npy' in entry:
                 s = int(entry.split(".")[0])
                 shape = np.load(osp.join(self.folder_loc,'paths','{}.npy'.format(s))).shape[0] - 1

@@ -12,7 +12,7 @@ if __name__ == "__main__":
     # print(train_ds)
     # print(train_dl[5])
     for batch in train_dl:
-        # print("hello2")
+        print("hello2")
         # print(x)
         bobs, bi, bt = batch
         print(bobs,bi,bt)

@@ -9,7 +9,7 @@ if __name__ == "__main__":
     print("hello1")
     count = 0
 
-    print(x in train_dl)
+    print(train_ds)
     # print(train_dl[5])
     for x in train_dl:
         print("hello2")

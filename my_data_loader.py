@@ -86,11 +86,11 @@ class ThreedIterDataset(torch.utils.data.IterableDataset):
         for entry in os.listdir(osp.join(self.folder_loc,'paths')):
             if '.npy' in entry:
                 s = int(entry.split(".")[0])
-                shape = np.load(osp.join(self.folder_loc,'paths','{}.npy'.format(s))).shape[0] - 1
-                our_dict[s] = [x for x in range(count+1,count+shape)]
+                shape = np.load(osp.join(self.folder_loc,'paths','{}.npy'.format(s))).shape[0] - 2
+                our_dict[s] = list(range(count,count+shape))
                 count = count + shape
                 # seeds = seeds + [x for x in range(count+1,count+shape)]
-        self.seeds = range(1,count)
+        self.seeds = list(range(1,count+1))
         self.our_dict = our_dict
 
     def get_key(self, val): 
@@ -109,7 +109,7 @@ class ThreedIterDataset(torch.utils.data.IterableDataset):
         #     iter_start = worker_id * per_worker
         #     iter_end = min(iter_start + per_worker, len(self.seeds))
 
-        return iter(self.GetItem(s) for s in self.seeds[iter_start:iter_end])
+        return iter(self.GetItem(s) for s in self.seeds)
 
 
     def GetItem(self, idx):

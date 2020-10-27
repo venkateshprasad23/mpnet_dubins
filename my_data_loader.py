@@ -77,11 +77,12 @@ class ThreedDataset(torch.utils.data.Dataset):
 
 
 class ThreedIterDataset(torch.utils.data.IterableDataset):
-    def __init__(self, folder_loc):
+    def __init__(self, folder_loc, numSamples):
         self.folder_loc = folder_loc
         # seeds = []
         our_dict = dict()
         count = 0
+        self.numSamples = numSamples
 
         for entry in os.listdir(osp.join(self.folder_loc,'paths')):
             if '.npy' in entry:
@@ -89,6 +90,8 @@ class ThreedIterDataset(torch.utils.data.IterableDataset):
                 shape = np.load(osp.join(self.folder_loc,'paths','{}.npy'.format(s))).shape[0] - 2
                 our_dict[s] = list(range(count,count+shape))
                 count = count + shape
+                if count>=numSamples:
+                    break
                 # seeds = seeds + [x for x in range(count+1,count+shape)]
         self.seeds = list(range(1,count+1))
         self.our_dict = our_dict

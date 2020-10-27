@@ -103,13 +103,13 @@ class ThreedIterDataset(torch.utils.data.IterableDataset):
         if worker_info is None:
             iter_start = 0
             iter_end = len(self.seeds)
-        # else:
-        #     per_worker = int(len(self.seeds) // worker_info.num_workers)
-        #     worker_id = worker_info.id
-        #     iter_start = worker_id * per_worker
-        #     iter_end = min(iter_start + per_worker, len(self.seeds))
+        else:
+            per_worker = int(len(self.seeds) // worker_info.num_workers)
+            worker_id = worker_info.id
+            iter_start = worker_id * per_worker
+            iter_end = min(iter_start + per_worker, len(self.seeds))
 
-        return iter(self.GetItem(s) for s in self.seeds)
+        return iter(self.GetItem(s) for s in self.seeds[iter_start:iter_end])
 
 
     def GetItem(self, idx):

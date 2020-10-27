@@ -9,6 +9,10 @@ if __name__ == "__main__":
     print("hello1")
     # count = 0
 
+    for i_batch, sample_batched in enumerate(train_dl):
+        print(i_batch, sample_batched['obs'].shape,
+          sample_batched['inputs'].shape)
+
     # # print(train_ds)
     # # print(train_dl[5])
     # for batch in train_dl:

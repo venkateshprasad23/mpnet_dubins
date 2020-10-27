@@ -77,10 +77,10 @@ class ThreedIterDataset(torch.utils.data.IterableDataset):
         inputs = np.concatenate((localtraj[i], goal))
         targets = localtraj[i+1]    
 
-        # return {
-        #     'obs': np.array(obs, dtype=np.float32),
-        #     'inputs': np.array(inputs, dtype=np.float32),
-        #     'targets': np.array(targets, dtype=np.float32)
-        # }
+        return {
+            'obs': np.array(obs, dtype=np.float32),
+            'inputs': np.array(inputs, dtype=np.float32),
+            'targets': np.array(targets, dtype=np.float32)
+        }
 
-        return obs, inputs, targets
+        # return obs, inputs, targets

@@ -1,4 +1,3 @@
-"""A class to load the point cloud data and target points in pixels """
 import os
 import re
 

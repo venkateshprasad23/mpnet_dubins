@@ -1,5 +1,5 @@
 from torch.utils.data import DataLoader
-from my_data_loader import ThreedDataset, ThreedIterDataset
+from my_data_loader import ThreedIterDataset
 
 
 if __name__ == "__main__":

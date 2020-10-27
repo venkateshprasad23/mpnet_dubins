@@ -10,7 +10,7 @@ if __name__ == "__main__":
     # count = 0
 
     for i_batch, sample_batched in enumerate(train_dl):
-        print(i_batch)
+        print(i_batch, sample_batched['inputs'], sample_batched['targets'])
 
     # # print(train_ds)
     # # print(train_dl[5])

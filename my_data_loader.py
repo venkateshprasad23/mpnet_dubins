@@ -79,7 +79,7 @@ class ThreedDataset(torch.utils.data.Dataset):
 class ThreedIterDataset(torch.utils.data.IterableDataset):
     def __init__(self, folder_loc):
         self.folder_loc = folder_loc
-        seeds = []
+        # seeds = []
         our_dict = dict()
         count = 0
 
@@ -89,8 +89,8 @@ class ThreedIterDataset(torch.utils.data.IterableDataset):
                 shape = np.load(osp.join(self.folder_loc,'paths','{}.npy'.format(s))).shape[0] - 1
                 our_dict[s] = [x for x in range(count+1,count+shape)]
                 count = count + shape
-                seeds = seeds + [x for x in range(count+1,count+shape)]
-        self.seeds = seeds
+                # seeds = seeds + [x for x in range(count+1,count+shape)]
+        self.seeds = range(1,count)
         self.our_dict = our_dict
 
     def get_key(self, val): 

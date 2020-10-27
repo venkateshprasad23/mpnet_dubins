@@ -9,8 +9,9 @@ if __name__ == "__main__":
     print("hello1")
     count = 0
     # print(train_dl[5])
-    for batch in train_dl:
+    for x in train_dl:
         print("hello2")
+        print(x)
         bobs, bi, bt = batch
         print(bobs,bi,bt)
     	# count+=1

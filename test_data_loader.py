@@ -8,6 +8,8 @@ if __name__ == "__main__":
     train_dl = DataLoader(train_ds, num_workers=5, batch_size=16, drop_last=True)
     print("hello1")
     count = 0
+
+    print(train_dl)
     # print(train_dl[5])
     for x in train_dl:
         print("hello2")

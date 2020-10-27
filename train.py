@@ -92,10 +92,10 @@ class MPnetTrain(MPnetBase):
 
         # train_ds = ThreedDataset(trainDataPath, numEnvsTrain*numPaths)
         train_ds = ThreedIterDataset(trainDataPath, numEnvsTrain*numPaths)
-        train_dl = DataLoader(train_ds, shuffle=True, num_workers = 5, batch_size = self.batchSize, drop_last=True)
+        train_dl = DataLoader(train_ds, num_workers = 5, batch_size = self.batchSize, drop_last=True)
 
         test_ds = ThreedIterDataset(testDataPath, numEnvsTest*numPaths)
-        test_dl = DataLoader(test_ds, shuffle=True, num_workers = 5, batch_size = self.batchSize, drop_last=True)
+        test_dl = DataLoader(test_ds, num_workers = 5, batch_size = self.batchSize, drop_last=True)
         # testObs, testInput, testTarget = 
         # testObs, testInput, testTarget = self.format_data(
         #     testObs, testInput, testTarget)

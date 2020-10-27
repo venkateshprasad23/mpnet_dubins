@@ -117,7 +117,7 @@ class ThreedIterDataset(torch.utils.data.IterableDataset):
         #     bagItem, = list(rosbagObject.read_messages('lcm'))
         #     _, msg, t = bagItem
 
-        key = get_key(idx)
+        key = self.get_key(idx)
         values = self.our_dict[key]
         i = idx - values[0]
 

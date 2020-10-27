@@ -4,7 +4,7 @@ from my_data_loader import ThreedDataset, ThreedIterDataset
 
 if __name__ == "__main__":
     trainDataFileName = '/root/my_workspace/data/main_train/train/'
-    train_ds = ThreedIterDataset(trainDataFileName, 10000)
+    train_ds = ThreedIterDataset(trainDataFileName, 1)
     train_dl = DataLoader(train_ds, num_workers=5, batch_size=256, drop_last=True)
     print("hello1")
     # count = 0

@@ -10,7 +10,7 @@ from torch.nn.utils import clip_grad_value_
 from torch.utils.data import DataLoader
 
 # from data_loader import ThreedDataset
-from my_data_loader import ThreedDataset, ThreedIterDataset
+from my_data_loader import ThreedIterDataset
 from mpnet import MPnetBase
 
 # TODO: Change the code to center the robot
@@ -91,13 +91,14 @@ class MPnetTrain(MPnetBase):
         #     obs_test, inputs_test, targets_test)
 
         # train_ds = ThreedDataset(trainDataPath, numEnvsTrain*numPaths)
-        train_ds = ThreedIterDataset(trainDataPath)
+        train_ds = ThreedIterDataset(trainDataPath, numEnvsTrain*numPaths)
         train_dl = DataLoader(train_ds, shuffle=True, num_workers = 5, batch_size = self.batchSize, drop_last=True)
 
-        test_ds = ThreedDataset(testDataPath, numEnvsTest*numPaths)
-        testObs, testInput, testTarget = test_ds[:int(numEnvsTest*numPaths/2)]
-        testObs, testInput, testTarget = self.format_data(
-            testObs, testInput, testTarget)
+        test_ds = ThreedIterDataset(testDataPath, numEnvsTest*numPaths)
+        test_dl = DataLoader(test_ds, shuffle=True, num_workers = 5, batch_size = self.batchSize, drop_last=True)
+        # testObs, testInput, testTarget = 
+        # testObs, testInput, testTarget = self.format_data(
+        #     testObs, testInput, testTarget)
 
         # Setting the learning rate scheduler
         # scheduler = step_decay_schedule(initial_lr=3e-4,
@@ -118,7 +119,7 @@ class MPnetTrain(MPnetBase):
             self.mpNet.train()
             train_loss_i = 0
             for batch in train_dl:
-                bobs, bi, bt = batch
+                bobs, bi, bt = batch['obs'], batch['inputs'], batch['targets']
                 bobs, bi, bt = self.format_data(bobs, bi, bt)
                 # Run gradient descent
                 train_loss_i += self.mpNet.fit(bobs, bi, bt)
@@ -128,12 +129,16 @@ class MPnetTrain(MPnetBase):
 
             with torch.no_grad():
                 # test loss
-                network_output = self.mpNet(testInput, testObs)
-                test_loss_i = self.mpNet.loss(
-                    network_output,
-                    testTarget
-                    ).sum(dim=1).mean()
-                test_loss_i = get_numpy(test_loss_i)
+                for batch in test_dl:
+                    testObs, testInput, testTarget = batch['obs'], batch['inputs'], batch['targets']
+                    testObs, testInput, testTarget = self.format_data(
+                        testObs, testInput, testTarget)
+                    network_output = self.mpNet(testInput, testObs)
+                    test_loss_i = self.mpNet.loss(
+                        network_output,
+                        testTarget
+                        ).sum(dim=1).mean()
+                    test_loss_i = get_numpy(test_loss_i)
 
             print('Epoch {} - train loss: {}'.format(epoch, train_loss_i))
             print('Epoch {} - test loss: {}'.format(epoch, test_loss_i))

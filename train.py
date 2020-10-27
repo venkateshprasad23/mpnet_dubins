@@ -124,7 +124,7 @@ class MPnetTrain(MPnetBase):
                 # Run gradient descent
                 train_loss_i += self.mpNet.fit(bobs, bi, bt)
                 # grad_norm.append(self.mpNet(bobs, bi, bt))
-            train_loss_i /=len(train_dl)
+            train_loss_i /=numEnvsTrain
             # import pdb;pdb.set_trace() 
 
             with torch.no_grad():

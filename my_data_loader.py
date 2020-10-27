@@ -93,7 +93,7 @@ class ThreedIterDataset(torch.utils.data.IterableDataset):
         self.seeds = seeds
         self.our_dict = our_dict
 
-    def get_key(val): 
+    def get_key(self, val): 
         for key, value in self.our_dict.items(): 
             if val in value:
                 return key  
@@ -103,11 +103,11 @@ class ThreedIterDataset(torch.utils.data.IterableDataset):
         if worker_info is None:
             iter_start = 0
             iter_end = len(self.seeds)
-        else:
-            per_worker = int(len(self.seeds) // worker_info.num_workers)
-            worker_id = worker_info.id
-            iter_start = worker_id * per_worker
-            iter_end = min(iter_start + per_worker, len(self.seeds))
+        # else:
+        #     per_worker = int(len(self.seeds) // worker_info.num_workers)
+        #     worker_id = worker_info.id
+        #     iter_start = worker_id * per_worker
+        #     iter_end = min(iter_start + per_worker, len(self.seeds))
 
         return iter(self.GetItem(s) for s in self.seeds[iter_start:iter_end])
 

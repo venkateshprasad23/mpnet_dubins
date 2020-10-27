@@ -9,7 +9,8 @@ import torch
 from torch.nn.utils import clip_grad_value_
 from torch.utils.data import DataLoader
 
-from data_loader import ThreedDataset
+# from data_loader import ThreedDataset
+from my_data_loader import ThreedDataset, ThreedIterDataset
 from mpnet import MPnetBase
 
 # TODO: Change the code to center the robot
@@ -89,7 +90,8 @@ class MPnetTrain(MPnetBase):
         # testObs, testInput, testTarget = self.format_data(
         #     obs_test, inputs_test, targets_test)
 
-        train_ds = ThreedDataset(trainDataPath, numEnvsTrain*numPaths)
+        # train_ds = ThreedDataset(trainDataPath, numEnvsTrain*numPaths)
+        train_ds = ThreedIterDataset(trainDataPath)
         train_dl = DataLoader(train_ds, shuffle=True, num_workers = 5, batch_size = self.batchSize, drop_last=True)
 
         test_ds = ThreedDataset(testDataPath, numEnvsTest*numPaths)

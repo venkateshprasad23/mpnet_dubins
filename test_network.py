@@ -55,7 +55,7 @@ def format_data(obs, inputs, targets):
 
 
 if __name__=="__main__":
-    modelPath = '/root/my_workspace/data/trained_models/mpnet_epoch_69.pkl'
+    modelPath = '/root/my_workspace/data/trained_models/mpnet_epoch_99.pkl'
     testDataPath='/root/my_workspace/data/test_network/'
     folder_loc = '/root/my_workspace/data/main_train/train/'
     # saveTorchScriptModel = '/root/data/grid_world_2_0_06/trained_models/mpnet_model_289.pt'

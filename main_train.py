@@ -48,7 +48,7 @@ def train(args):
         learning_rate=3e-4,
         **network_parameters
     )
-    trainNetwork.set_model_train_epoch(99)
+    trainNetwork.set_model_train_epoch(119)
     # debug_memory()
     trainNetwork.train(numEnvsTrain=150000,
                        numEnvsTest=1000,

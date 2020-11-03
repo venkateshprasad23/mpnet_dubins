@@ -19,7 +19,7 @@ if __name__=="__main__":
         "encoderOutputDim": 128,
         "worldSize": [1.73, 1.73, 1.73],
         "AE": voxelNet,
-        "MLP": modelMLP,
+        "MLP": model.MLP,
         "modelPath": modelPath}
 
     mpnet_base = MPnetBase(**network_param)

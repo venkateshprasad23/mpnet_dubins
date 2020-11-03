@@ -2,24 +2,24 @@
 import torch
 import numpy as np
 
-import model.voxel_ae as voxelNet
-import model.model as model
+import voxel_ae as voxelNet
+import model as model
 from mpnet import MPnetBase
 from misc import normalize, unnormalize
 
 
 if __name__=="__main__":
-    modelPath = '/root/data/grid_world_2_0_06/trained_models/mpnet_epoch_289.pkl'
-    saveTorchScriptModel = '/root/data/grid_world_2_0_06/trained_models/mpnet_model_289.pt'
+    modelPath = '/root/my_workspace/data/trained_models/mpnet_epoch_299.pkl'
+    saveTorchScriptModel = '/root/my_workspace/data/trained_models/mpnet_model_299.pt'
 
     network_param = {
         "normalize": normalize,
         "denormalize": unnormalize,
-        "encoderInputDim": [1, 80, 80],
+        "encoderInputDim": [1, 40, 40, 40],
         "encoderOutputDim": 128,
-        "worldSize": [6, 6, np.pi],
+        "worldSize": [1.73, 1.73, 1.73],
         "AE": voxelNet,
-        "MLP": model.MLP,
+        "MLP": modelMLP,
         "modelPath": modelPath}
 
     mpnet_base = MPnetBase(**network_param)

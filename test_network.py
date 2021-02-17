@@ -55,7 +55,7 @@ def format_data(obs, inputs, targets):
 
 
 if __name__=="__main__":
-    modelPath = '/root/my_workspace/data/trained_models/mpnet_epoch_99.pkl'
+    modelPath = '/root/my_workspace/data/new_trained_models/mpnet_epoch_99.pkl'
     testDataPath='/root/my_workspace/data/test_network/'
     folder_loc = '/root/my_workspace/data/main_train/train/'
     # saveTorchScriptModel = '/root/data/grid_world_2_0_06/trained_models/mpnet_model_289.pt'
@@ -63,7 +63,7 @@ if __name__=="__main__":
     network_param = {
         "normalize": normalize,
         "denormalize": unnormalize,
-        "encoderInputDim": [1, 40, 40, 40],
+        "encoderInputDim": [40, 40, 40],
         "encoderOutputDim": 128,
         "worldSize": [1.73, 1.73, 1.73],
         "AE": voxelNet,
@@ -100,8 +100,8 @@ if __name__=="__main__":
     new_costmap = np.ones((40,40,40))
     new_costmap[10-mx:30-mx,10-my:30-my,10-mz:30-mz] = costmap
 
-    obs = np.ones((1, 1, 40, 40, 40))
-    obs[0,0,:,:,:] = new_costmap
+    obs = np.ones((1, 40, 40, 40))
+    obs[0, :,:,:] = new_costmap
     # obs = costmap[0]
     # print("Costmap, before reshaping: ",obs)
     # print("Shape before for costmap: ",obs.shape)

@@ -31,7 +31,7 @@ def train(args):
     network_parameters = {
         'normalize': normalize,
         'denormalize': denormalize,
-        'encoderInputDim': [1, 40, 40, 40],
+        'encoderInputDim': [40, 40, 40],
         'encoderOutputDim': 128,
         # 'worldSize': [27, 27, np.pi],
         'worldSize' : [1.73, 1.73, 1.73],
@@ -48,7 +48,7 @@ def train(args):
         learning_rate=3e-4,
         **network_parameters
     )
-    trainNetwork.set_model_train_epoch(119)
+    #trainNetwork.set_model_train_epoch(99)
     # debug_memory()
     trainNetwork.train(numEnvsTrain=150000,
                        numEnvsTest=1000,

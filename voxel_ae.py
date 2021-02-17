@@ -24,22 +24,26 @@ class Encoder(nn.Module):
     def __init__(self, output_size, state_size, input_size):
         super(Encoder, self).__init__()
         self.encoder = nn.Sequential(
-            nn.Conv3d(in_channels=1,
-                      out_channels=32,
-                      kernel_size=[5, 5, 5],
-                      stride=[2, 2, 2]),
+            nn.Conv2d(in_channels=40,
+                      out_channels=16,
+                      kernel_size=[10, 10],
+                      stride=[2, 2]),
             # nn.BatchNorm2d(8),
             # nn.MaxPool3d(kernel_size=2),
             nn.PReLU(),
             # nn.ReLU(),
-            nn.Conv3d(in_channels=32,
+            nn.Conv2d(in_channels=16,
                       out_channels=32,
-                      kernel_size=[3, 3, 3],
-                      stride=[1, 1, 1]),
+                      kernel_size=[10, 10],
+                      stride=[2, 2]),
             # nn.BatchNorm2d(16),
-            nn.MaxPool3d(kernel_size=2),
+            # nn.MaxPool3d(kernel_size=2),
             nn.PReLU(),
-            # nn.ReLU(),
+            #nn.Conv2d(in_channels=32,
+            #          out_channels=32,
+             #         kernel_size=[5, 5],
+              #        stride=[2, 2]),
+            #nn.PReLU(),
             # nn.Conv3d(in_channels=16,
             #           out_channels=32,
             #           kernel_size=[3, 3, 3],
@@ -50,18 +54,18 @@ class Encoder(nn.Module):
         # self.encoder.apply(weights_init)
         # For accepting different input shapes
         # x = self.encoder(torch.autograd.Variable(torch.rand(input_size)))
-        x = self.encoder(torch.autograd.Variable(torch.rand([1] + input_size)))
+        x = self.encoder(torch.autograd.Variable(torch.rand([1]+input_size)))
         first_fc_in_features = 1
         for n in x.size()[1:]:
             first_fc_in_features *= n
         self.head = nn.Sequential(
             # nn.Linear(first_fc_in_features, 128),
-            nn.Linear(first_fc_in_features + state_size, 128),
+            nn.Linear(first_fc_in_features + state_size, 512),
             nn.PReLU(),
             nn.Dropout(),
-            nn.Linear(128, output_size),
-            nn.PReLU(),
-            nn.Dropout(),
+            #nn.Linear(128, output_size),
+            #nn.PReLU(),
+            #nn.Dropout(),
             # nn.Linear(128, output_size),
         )
         # self.head.apply(weights_init)

@@ -2,7 +2,7 @@ import csv
 import matplotlib.pyplot as plt
 import numpy as np
 
-datafile = open('/root/my_workspace/data/trained_models/progress.csv', 'r')
+datafile = open('/root/my_workspace/data/new_trained_models/progress.csv', 'r')
 myreader = csv.reader(datafile)
 
 array_test = []
@@ -19,5 +19,5 @@ for row in myreader:
 # print(array)
 plt.plot(array_train,'r')
 plt.plot(array_test,'g')
-plt.savefig('losses.png')
+plt.savefig('loss_new.png')
     

@@ -59,7 +59,7 @@ class ThreedIterDataset(torch.utils.data.IterableDataset):
         
         localtraj = np.copy(traj)
 
-        obs = np.ones((1, 40, 40, 40))
+        obs = np.ones((40, 40, 40))
         inputs = np.zeros((1, 6))
         targets = np.zeros((1, 3))
 
@@ -72,7 +72,7 @@ class ThreedIterDataset(torch.utils.data.IterableDataset):
         new_costmap = np.ones((40,40,40))
         new_costmap[10-mx:30-mx,10-my:30-my,10-mz:30-mz] = costmap
         
-        obs[0,:,:,:] = new_costmap
+        obs[:,:,:] = new_costmap
         inputs = np.concatenate((localtraj[i], goal))
         targets = localtraj[i+1]    
 

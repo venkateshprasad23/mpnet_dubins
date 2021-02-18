@@ -103,6 +103,9 @@ if __name__=="__main__":
     current = start
     res = 0.2
 
+    traj_list = []
+    traj_list.append(current)
+
     while((np.linalg.norm(current-goal)) > 0.2):
         mx, my, mz = round(current[0]/res), round(current[1]/res), round(current[2]/res)
         new_costmap = np.ones((40,40,40))
@@ -123,9 +126,10 @@ if __name__=="__main__":
         current = temp
         goal = goal.numpy()
         print(current)
+        traj_list.append(current)
     
         
-
+    print(traj_list)
     # mx, my, mz = 0, 0, 0#round(point[0]/res), round(point[1]/res), round(point[2]/res)
     # new_costmap = np.ones((40,40,40))
     # new_costmap[10-mx:30-mx,10-my:30-my,10-mz:30-mz] = costmap

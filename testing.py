@@ -133,7 +133,7 @@ if __name__=="__main__":
         temp = unnormalize(temp.squeeze(), worldSize)
         temp = temp.numpy()
         # current = temp + gugu
-        # goal = goal.numpy()
+        goal = goal.numpy()
         current = temp
         print(current)
         traj_list.append(current)

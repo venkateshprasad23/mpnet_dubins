@@ -100,6 +100,28 @@ if __name__=="__main__":
 
     dist = np.linalg.norm(start-goal)
     print(dist)
+    current = start
+
+    while(np.linalg.norm(current-goal)>0.2)
+    {
+        mx, my, mz = round(current[0]/res), round(current[1]/res), round(current[2]/res)
+        new_costmap = np.ones((40,40,40))
+        new_costmap[10-mx:30-mx,10-my:30-my,10-mz:30-mz] = costmap
+
+        obs = np.ones((1, 40, 40, 40))
+        obs[0, :,:,:] = new_costmap
+        obs = torch.Tensor(obs)
+
+        current = torch.tensor(current).float().reshape(1,-1)
+        goal = torch.tensor(goal).float().reshape(1,-1)
+        network_input = torch.cat((current,goal), dim=1)
+
+        tobs, tInput = format_input(obs, network_input)
+        temp = mpnet_base.mpNet(tInput, tobs).data.cpu() 
+        temp = unnormalize(temp.squeeze(), worldSize)
+        current = temp
+        print(current)
+    }
 
     # mx, my, mz = 0, 0, 0#round(point[0]/res), round(point[1]/res), round(point[2]/res)
     # new_costmap = np.ones((40,40,40))

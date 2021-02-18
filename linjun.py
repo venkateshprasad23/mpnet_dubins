@@ -37,7 +37,7 @@ z = [a[2] for a in my_traj]
 # ax.scatter3D(x1,y1,z1,cmap='Greens')
 plt.plot(x1,y1,z1)
 plt.plot(x,y,z)
-plt.scatter3D(original_traj[0][0], original_traj[0][1], original_traj[0][2])
+ax.scatter3D(original_traj[0][0], original_traj[0][1], original_traj[0][2])
 
 plt.savefig('my_traj.png')
 

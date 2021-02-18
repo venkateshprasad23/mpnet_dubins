@@ -55,15 +55,14 @@ def format_data(obs, inputs, targets):
 
 
 if __name__=="__main__":
-    modelPath = '/root/my_workspace/data/trained_models/mpnet_epoch_289.pkl'
+    modelPath = '/root/my_workspace/data/new_trained_models/mpnet_epoch_99.pkl'
     testDataPath='/root/my_workspace/data/test_network/'
     folder_loc = '/root/my_workspace/data/main_train/train/'
-    # saveTorchScriptModel = '/root/data/grid_world_2_0_06/trained_models/mpnet_model_289.pt'
 
     network_param = {
         "normalize": normalize,
         "denormalize": unnormalize,
-        "encoderInputDim": [1, 1, 40, 40, 40],
+        "encoderInputDim": [40, 40, 40],
         "encoderOutputDim": 128,
         "worldSize": [1.73, 1.73, 1.73],
         "AE": voxelNet,
@@ -83,50 +82,41 @@ if __name__=="__main__":
     costmap = np.load(osp.join(folder_loc,'costmaps','{}.npy'.format(idx)))
     traj = np.load(osp.join(folder_loc,'paths','{}.npy'.format(idx)))
 
-    start = traj[0]
-    print("Initial start, before reshaping: ",start)
-    print("Shape: ",start.shape)
-    start = torch.tensor(start).float().reshape(1,-1)
-    print("Start, after reshaping: ",start)
-    print("Shape: ",start.shape)
-    goal = traj[-1]
-    print("Initial goal, before reshaping: ",goal)
-    print("Shape: ",goal.shape)
-    goal = torch.tensor(goal).float().reshape(1,-1)
-    print("Goal, after reshaping: ",goal)
-    print("Shape: ",goal.shape)
+    print(traj)
 
-    mx, my, mz = 0, 0, 0#round(point[0]/res), round(point[1]/res), round(point[2]/res)
-    new_costmap = np.ones((40,40,40))
-    new_costmap[10-mx:30-mx,10-my:30-my,10-mz:30-mz] = costmap
+    # start = traj[0]
+    # print("Initial start, before reshaping: ",start)
+    # print("Shape: ",start.shape)
+    # start = torch.tensor(start).float().reshape(1,-1)
+    # print("Start, after reshaping: ",start)
+    # print("Shape: ",start.shape)
+    # goal = traj[-1]
+    # print("Initial goal, before reshaping: ",goal)
+    # print("Shape: ",goal.shape)
+    # goal = torch.tensor(goal).float().reshape(1,-1)
+    # print("Goal, after reshaping: ",goal)
+    # print("Shape: ",goal.shape)
 
-    obs = np.ones((40, 40, 40))
-    obs[:,:,:] = new_costmap
-    # obs = costmap[0]
-    # print("Costmap, before reshaping: ",obs)
-    # print("Shape before for costmap: ",obs.shape)
-    obs = torch.Tensor(obs)#.unsqueeze(0)
-    # print("Costmap, after reshaping: ",obs)
-    # print("Shape after: ",obs.shape)
+    # mx, my, mz = 0, 0, 0#round(point[0]/res), round(point[1]/res), round(point[2]/res)
+    # new_costmap = np.ones((40,40,40))
+    # new_costmap[10-mx:30-mx,10-my:30-my,10-mz:30-mz] = costmap
 
-    network_input = torch.cat((start,goal), dim=1)
-    # print("Network Input: ",network_input)
-    # print("Shape: ",network_input.shape)
-    tobs, tInput = format_input(obs, network_input)
-    # print("tInput: ",tInput)
-    # print("Unsqueezed shape: ", tobs.shape)
-    temp = mpnet_base.mpNet(tInput, tobs).data.cpu()
-    print("Before normalization : ", temp)
-    temp = unnormalize(temp.squeeze(), worldSize)
-    # temp = start + temp
-    # test_loss_i = mpnet_base.mpNet.loss(
-    #                 temp,
-    #                 traj[1,:]
-    #                 ).sum(dim=1)
-    # test_loss_i = get_numpy(test_loss_i)
-    # print(test_loss_i)
+    # obs = np.ones((1, 40, 40, 40))
+    # obs[0, :,:,:] = new_costmap
+    # obs = torch.Tensor(obs)
 
-    print('Network Output : {}, trajectory value: {}'.format(temp, traj[:,:]))
+    # network_input = torch.cat((start,goal), dim=1)
+    # # print("Network Input: ",network_input)
+    # # print("Shape: ",network_input.shape)
+    # tobs, tInput = format_input(obs, network_input)
+    # # print("tInput: ",tInput)
+    # # print("Unsqueezed shape: ", tobs.shape)
+    # temp = mpnet_base.mpNet(tInput, tobs).data.cpu()
+    # print("Before normalization : ", temp)
+    # temp = unnormalize(temp.squeeze(), worldSize)
+    # # temp = start + temp
+
+    # print('Network Output : {}, trajectory value: {}'.format(temp, traj[:,:]))
 
 
 

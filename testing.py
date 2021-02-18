@@ -78,18 +78,19 @@ if __name__=="__main__":
         mpnet_base.mpNet.mlp.cuda()
         mpnet_base.mpNet.encoder.cuda()
 
-    idx = 3
+    idx = 2
     costmap = np.load(osp.join(folder_loc,'costmaps','{}.npy'.format(idx)))
     traj = np.load(osp.join(folder_loc,'paths','{}.npy'.format(idx)))
 
     print(traj)
 
-    # start = traj[0]
-    # print("Initial start, before reshaping: ",start)
-    # print("Shape: ",start.shape)
-    # start = torch.tensor(start).float().reshape(1,-1)
-    # print("Start, after reshaping: ",start)
-    # print("Shape: ",start.shape)
+    start = traj[0]
+    
+    print("Initial start, before reshaping: ",start)
+    print("Shape: ",start.shape)
+    start = torch.tensor(start).float().reshape(1,-1)
+    print("Start, after reshaping: ",start)
+    print("Shape: ",start.shape)
     # goal = traj[-1]
     # print("Initial goal, before reshaping: ",goal)
     # print("Shape: ",goal.shape)

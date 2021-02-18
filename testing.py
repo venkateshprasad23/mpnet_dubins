@@ -86,17 +86,17 @@ if __name__=="__main__":
 
     start = traj[0]
     
-    print("Initial start, before reshaping: ",start)
-    print("Shape: ",start.shape)
+    # print("Initial start, before reshaping: ",start)
+    # print("Shape: ",start.shape)
     # start = torch.tensor(start).float().reshape(1,-1)
-    print("Start, after reshaping: ",start)
-    print("Shape: ",start.shape)
+    # print("Start, after reshaping: ",start)
+    # print("Shape: ",start.shape)
     goal = traj[-1]
-    print("Initial goal, before reshaping: ",goal)
-    print("Shape: ",goal.shape)
+    # print("Initial goal, before reshaping: ",goal)
+    # print("Shape: ",goal.shape)
     # goal = torch.tensor(goal).float().reshape(1,-1)
-    print("Goal, after reshaping: ",goal)
-    print("Shape: ",goal.shape)
+    # print("Goal, after reshaping: ",goal)
+    # print("Shape: ",goal.shape)
 
     dist = np.linalg.norm(start-goal)
     print(dist)
@@ -115,7 +115,7 @@ if __name__=="__main__":
         obs[0, :,:,:] = new_costmap
         obs = torch.Tensor(obs)
 
-        start = current
+        gugu = current
         current = current - current
         temp_goal = goal - current
 
@@ -127,9 +127,9 @@ if __name__=="__main__":
         temp = mpnet_base.mpNet(tInput, tobs).data.cpu() 
         temp = unnormalize(temp.squeeze(), worldSize)
         temp = temp.numpy()
-        current = temp + start
+        current = temp + gugu
         # goal = goal.numpy()
-        # print(current)
+        print(current)
         traj_list.append(current)
     
         

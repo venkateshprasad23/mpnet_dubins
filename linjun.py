@@ -28,7 +28,12 @@ x1 = [a[0] for a in original_traj]
 y1 = [a[1] for a in original_traj]
 z1 = [a[2] for a in original_traj]
 
+x = [a[0] for a in my_traj]
+y = [a[1] for a in my_traj]
+z = [a[2] for a in my_traj]
+
 # ax.scatter3D(x1,y1,z1,cmap='Greens')
 plt.plot(x1,y1,z1)
+plt.plot(x,y,z)
 plt.savefig('my_traj.png')
 

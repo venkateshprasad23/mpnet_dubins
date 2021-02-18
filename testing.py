@@ -102,7 +102,7 @@ if __name__=="__main__":
     print(dist)
     current = start
 
-    while((np.linalg.norm(current-goal)) > 0.2)
+    while((np.linalg.norm(current-goal)) > 0.2):
     {
         mx, my, mz = round(current[0]/res), round(current[1]/res), round(current[2]/res)
         new_costmap = np.ones((40,40,40))

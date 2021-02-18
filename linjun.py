@@ -17,13 +17,18 @@ mapp = np.load('/root/my_workspace/mpnet_dubins/saving_traj/map_v2.npy')
 fig = plt.figure()
 ax = plt.axes(projection='3d')
 
-x = my_traj[:,0]
-y = my_traj[:,1]
-z = my_traj[:,2]
+# x = my_traj[:,0]
+# y = my_traj[:,1]
+# z = my_traj[:,2]
 
-x1 = original_traj[:,0]
-y1 = original_traj[:,1]
-z1 = original_traj[:,2]
-ax.scatter3D(x1,y1,z1,cmap='Greens')
+# x1 = original_traj[:,0]
+# y1 = original_traj[:,1]
+# z1 = original_traj[:,2]
+x1 = [a[0] for a in original_traj]
+y1 = [a[1] for a in original_traj]
+z1 = [a[2] for a in original_traj]
+
+# ax.scatter3D(x1,y1,z1,cmap='Greens')
+plt.plot(x1,y1,z1)
 plt.savefig('my_traj.png')
 

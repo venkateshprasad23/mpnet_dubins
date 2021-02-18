@@ -19,7 +19,11 @@ ax = plt.axes(projection='3d')
 
 x = my_traj[:,0]
 y = my_traj[:,1]
-z = my_traj[:,2] 
-ax.scatter3D(x,y,z)
+z = my_traj[:,2]
+
+x1 = original_traj[:,0]
+y1 = original_traj[:,1]
+z1 = original_traj[:,2]
+ax.scatter3D(x1,y1,z1,cmap='Greens')
 plt.savefig('my_traj.png')
 

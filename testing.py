@@ -101,6 +101,7 @@ if __name__=="__main__":
     dist = np.linalg.norm(start-goal)
     print(dist)
     current = start
+    res = 0.2
 
     while((np.linalg.norm(current-goal)) > 0.2):
         mx, my, mz = round(current[0]/res), round(current[1]/res), round(current[2]/res)

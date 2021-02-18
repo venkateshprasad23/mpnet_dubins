@@ -135,7 +135,7 @@ if __name__=="__main__":
         # current = temp + gugu
         goal = goal.numpy()
         current = temp
-        print(current)
+        # print(current)
         traj_list.append(current)
     
         

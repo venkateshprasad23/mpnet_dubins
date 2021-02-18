@@ -119,7 +119,9 @@ if __name__=="__main__":
         tobs, tInput = format_input(obs, network_input)
         temp = mpnet_base.mpNet(tInput, tobs).data.cpu() 
         temp = unnormalize(temp.squeeze(), worldSize)
+        temp = temp.numpy()
         current = temp
+        goal = goal.numpy()
         print(current)
     
         

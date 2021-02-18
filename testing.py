@@ -88,15 +88,18 @@ if __name__=="__main__":
     
     print("Initial start, before reshaping: ",start)
     print("Shape: ",start.shape)
-    start = torch.tensor(start).float().reshape(1,-1)
+    # start = torch.tensor(start).float().reshape(1,-1)
     print("Start, after reshaping: ",start)
     print("Shape: ",start.shape)
-    # goal = traj[-1]
-    # print("Initial goal, before reshaping: ",goal)
-    # print("Shape: ",goal.shape)
+    goal = traj[-1]
+    print("Initial goal, before reshaping: ",goal)
+    print("Shape: ",goal.shape)
     # goal = torch.tensor(goal).float().reshape(1,-1)
-    # print("Goal, after reshaping: ",goal)
-    # print("Shape: ",goal.shape)
+    print("Goal, after reshaping: ",goal)
+    print("Shape: ",goal.shape)
+
+    dist = np.linalg.norm(start-goal)
+    print(dist)
 
     # mx, my, mz = 0, 0, 0#round(point[0]/res), round(point[1]/res), round(point[2]/res)
     # new_costmap = np.ones((40,40,40))

@@ -125,11 +125,12 @@ if __name__=="__main__":
         temp = temp.numpy()
         current = temp
         goal = goal.numpy()
-        print(current)
+        # print(current)
         traj_list.append(current)
     
         
     print(traj_list)
+    np.save('my_traj.npy',traj_list)
     # mx, my, mz = 0, 0, 0#round(point[0]/res), round(point[1]/res), round(point[2]/res)
     # new_costmap = np.ones((40,40,40))
     # new_costmap[10-mx:30-mx,10-my:30-my,10-mz:30-mz] = costmap

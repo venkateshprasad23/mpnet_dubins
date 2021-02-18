@@ -118,20 +118,23 @@ if __name__=="__main__":
         obs[0, :,:,:] = new_costmap
         obs = torch.Tensor(obs)
 
-        gugu = current
-        current = current - current
-        temp_goal = goal - current
+        # gugu = current
+        # current = current - current
+        # temp_goal = goal - current
 
         current = torch.tensor(current).float().reshape(1,-1)
-        temp_goal = torch.tensor(temp_goal).float().reshape(1,-1)
-        network_input = torch.cat((current,temp_goal), dim=1)
+        # temp_goal = torch.tensor(temp_goal).float().reshape(1,-1)
+        goal = torch.tensor(goal).float().reshape(1,-1)
+
+        network_input = torch.cat((current,goal), dim=1)
 
         tobs, tInput = format_input(obs, network_input)
         temp = mpnet_base.mpNet(tInput, tobs).data.cpu() 
         temp = unnormalize(temp.squeeze(), worldSize)
         temp = temp.numpy()
-        current = temp + gugu
+        # current = temp + gugu
         # goal = goal.numpy()
+        current = temp
         print(current)
         traj_list.append(current)
     

@@ -107,7 +107,7 @@ if __name__=="__main__":
     traj_list.append(current)
     i=0
 
-    while((np.linalg.norm(current-goal)) > 1):
+    while((np.linalg.norm(current-goal)) > 0.5):
         i=i+1
         print(i)
         mx, my, mz = round(current[0]/res), round(current[1]/res), round(current[2]/res)

@@ -57,7 +57,7 @@ def format_data(obs, inputs, targets):
 if __name__=="__main__":
     modelPath = '/root/my_workspace/data/new_trained_models/mpnet_epoch_99.pkl'
     testDataPath='/root/my_workspace/data/test_network/'
-    folder_loc = '/root/my_workspace/data/main_train/train/'
+    folder_loc = '/root/my_workspace/data/main_train/test/'
 
     network_param = {
         "normalize": normalize,
@@ -98,8 +98,8 @@ if __name__=="__main__":
     # print("Goal, after reshaping: ",goal)
     # print("Shape: ",goal.shape)
 
-    dist = np.linalg.norm(start-goal)
-    print(dist)
+    # dist = np.linalg.norm(start-goal)
+    # print(dist)
     current = start
     res = 0.2
 
@@ -140,7 +140,7 @@ if __name__=="__main__":
     
         
     print(traj_list)
-    # np.save('my_traj.npy',traj_list)
+    np.save('my_traj.npy',traj_list)
     # mx, my, mz = 0, 0, 0#round(point[0]/res), round(point[1]/res), round(point[2]/res)
     # new_costmap = np.ones((40,40,40))
     # new_costmap[10-mx:30-mx,10-my:30-my,10-mz:30-mz] = costmap

@@ -78,7 +78,7 @@ if __name__=="__main__":
         mpnet_base.mpNet.mlp.cuda()
         mpnet_base.mpNet.encoder.cuda()
 
-    idx = 2
+    idx = 150002
     costmap = np.load(osp.join(folder_loc,'costmaps','{}.npy'.format(idx)))
     traj = np.load(osp.join(folder_loc,'paths','{}.npy'.format(idx)))
 

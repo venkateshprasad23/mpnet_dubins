@@ -9,8 +9,8 @@ from misc import normalize, unnormalize
 
 
 if __name__=="__main__":
-    modelPath = '/root/my_workspace/data/new_trained_models/mpnet_epoch_49.pkl'
-    saveTorchScriptModel = '/root/my_workspace/data/new_trained_models/mpnet_model_49.pt'
+    modelPath = '/root/my_workspace/data/new_trained_models/mpnet_epoch_299.pkl'
+    saveTorchScriptModel = '/root/my_workspace/mpnet_dubins/mpnet_model_299.pt'
 
     network_param = {
         "normalize": normalize,

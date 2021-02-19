@@ -5,7 +5,7 @@ from mpl_toolkits import mplot3d
 
 
 my_traj = np.load('my_traj.npy')
-original_traj = np.load('/root/my_workspace/data/main_train/train/paths/2.npy')
+original_traj = np.load('/root/my_workspace/data/main_train/test/paths/2.npy')
 mapp = np.load('/root/my_workspace/mpnet_dubins/saving_traj/map_v2.npy')
 # print(my_traj)
 # print(mapp.shape)
